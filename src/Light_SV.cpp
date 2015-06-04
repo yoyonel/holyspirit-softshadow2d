@@ -21,7 +21,7 @@
 #define __USE_ANALYTIC_GENERATION__
 //#define __USE_PROJECTION_AT_INFINY_GENERATION__
 
-#define __USE_GROUND_TRUTH__ // [MOG]: active les rendu ground truth => raytracer
+//#define __USE_GROUND_TRUTH__ // [MOG]
 //
 //#define __GROUND_TRUTH_STRATIFIED_SAMPLING__
 #define __GROUND_TRUTH_RANDOM_SAMPLING__

@@ -7,8 +7,8 @@
 
 //#define     __USE_LIGHT__
 #define   __USE_LIGHT_SV__
-#define __USE_1_LIGHT__         // [MOG]
-#define __USE_1_WALL__          // [MOG]
+//#define __USE_1_LIGHT__         // [MOG]
+//#define __USE_1_WALL__          // [MOG]
 
 #define     SIZE_RAND_WALLS     0
 //
@@ -17,7 +17,7 @@
 #define     SIZE_LIGHT_TYPE0    (256+128)
 #define     SIZE_LIGHT_TYPE1    (128*2)
 //
-//#define     __USE_BACKGROUND__
+#define     __USE_BACKGROUND__
 //
 #define     __DRAW_WALLS__
 //
@@ -32,7 +32,7 @@ int i_screen_height     = 720; // HD-720p
 //
 int i_screen_width      = (int)(i_screen_height*f_ratio_screen);
 
-int ambient = 8;    // [MOG]: ambient pour les lumières
+int ambient = 3;    // [MOG]
 
 sf::Color ambient_light = sf::Color(ambient, ambient, ambient, 255);
 

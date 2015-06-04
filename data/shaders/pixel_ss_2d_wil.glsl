@@ -205,9 +205,7 @@ vec2 compute_projection_on_circle( in vec2 E, in vec2 P, in float r, in float in
     a = acos(d);
     y = normalize(E-P);
     x = NORMAL(y);
-
-    //Proj_E_P = pos_light + x*d*r + y*sin(a)*r;
-    Proj_E_P = pos_light + x*f_signed_distance + y*sin(a)*r;
+    Proj_E_P = pos_light + x*d*r + y*sin(a)*r;
 
     return Proj_E_P;
 }
