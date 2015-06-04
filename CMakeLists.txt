@@ -25,7 +25,7 @@ AUX_SOURCE_DIRECTORY(src SRCFILES)
 MESSAGE(SRCFILES: ${SRCFILES})
 
 include_directories(src)
-include_directories("/home/latty/__DEV__/__LOISIRS__/sfml2_custom/src")
+#include_directories("/home/latty/__DEV__/__LOISIRS__/sfml2_custom/src")
 
 add_executable(
 	${EXECUTABLE_NAME} 
@@ -36,9 +36,10 @@ add_executable(
 # Detect and add SFML
 # local [MOG]
 set(SFMLDIR "/home/latty/__DEV__/__LOISIRS__/install/sfml2_custom")
+MESSAGE([LOCAL] - SFMLDIR: ${SFMLDIR})
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
-MESSAGE(CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH})
+#MESSAGE(CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH})
 #Find any version 2.X of SFML
 #See the FindSFML.cmake file for additional details and instructions
 find_package(SFML 2 REQUIRED system window graphics network audio)
