@@ -17,7 +17,7 @@ class Light_Manager : public CSingleton<Light_Manager>
     Light_Manager();
     ~Light_Manager();
 
-     // Les tableaux de murs, lumières statiques et dynamiques
+     // Les tableaux de murs, lumieres statiques et dynamiques
     std::vector <Wall> m_wall;
     std::vector <Light*> m_StaticLight;
     std::vector <Light*> m_DynamicLight;
@@ -28,7 +28,7 @@ class Light_Manager : public CSingleton<Light_Manager>
     friend void CSingleton<Light_Manager>::Kill();
 
 
-    //Différents moyen d'ajouter une lumière dynamique, soit on l'ajoute sans aucune valeur par défaut, soit on lui donne une lumière par défaut, soit on lui donne ses valeurs "à la main"
+    //Differents moyen d'ajouter une lumiere dynamique, soit on l'ajoute sans aucune valeur par defaut, soit on lui donne une lumiere par defaut, soit on lui donne ses valeurs "ÃƒÂƒÃ‚  la main"
     Light_Entity Add_Dynamic_Light();
     Light_Entity Add_Dynamic_Light(Light);
     Light_Entity Add_Dynamic_Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color);
@@ -50,22 +50,22 @@ class Light_Manager : public CSingleton<Light_Manager>
     // Ajouter un mur
     Wall_Entity Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2);
 
-    // Désactiver une lumière ou supprimer un mur
+    // Desactiver une lumiere ou supprimer un mur
     void Delete_Light(Light_Entity);
     void Delete_Wall(Wall_Entity);
 
     void Delete_All_Wall();
     void Delete_All_Light();
 
-    // Calculer toutes les lumières dynamiques
+    // Calculer toutes les lumieres dynamiques
     void Generate();
     void Generate(Light_Entity);
 
-    // Afficher toutes les lumières à l'écran
+    // Afficher toutes les lumieres ÃƒÂƒÃ‚  l'ecran
     void Draw(sf::RenderWindow *App);
 
-    // Différentes méthodes pour modifier les attributs d'une lumière, ou les récupérer. Il faut à chaque fois envoyer une Light_Entity en paramètre pour
-    // savoir de quelle lumière on parle/
+    // Differentes methodes pour modifier les attributs d'une lumiere, ou les recuperer. Il faut ÃƒÂƒÃ‚  chaque fois envoyer une Light_Entity en parametre pour
+    // savoir de quelle lumiere on parle/
 
     void SetPosition(Light_Entity, sf::Vector2f );
     void SetQuality(Light_Entity, int );

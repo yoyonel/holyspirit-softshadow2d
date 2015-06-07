@@ -19,8 +19,8 @@ bool    inside_half_plane(in vec2 A, in vec2 B, in vec2 P);
 
 void main()
 {
-    vec2    v_pos_in_ls         = v_v_position - u_v_position_light; // position du vertex edge dans le repère lumière (Light Space)
-    vec2    v_pos_light_in_ls   = vec2(0); // origine du repère
+    vec2    v_pos_in_ls         = v_v_position - u_v_position_light; // position du vertex edge dans le repere lumiere (Light Space)
+    vec2    v_pos_light_in_ls   = vec2(0); // origine du repere
 
     // inside influence circle ?
     if (length(v_pos_in_ls) > u_f_influence_radius_light )
@@ -28,13 +28,13 @@ void main()
     //
     if (!inside_half_plane(u_v_e0, u_v_e1, v_pos_in_ls))
         discard;
-    // Discards pour éviter les problèmes quand
-    // le centre de la source de lumière est sur la droite portant l'edge
-    // Texel receiver du bon coté ?
+    // Discards pour eviter les problemes quand
+    // le centre de la source de lumiere est sur la droite portant l'edge
+    // Texel receiver du bon cote ?
     float dot_P_i0 = dot(v_pos_in_ls, u_v_e0);
     if (dot_P_i0 < 0)
         discard;
-    // La lumière est alignée avec la droite support du segment-edge
+    // La lumiere est alignee avec la droite support du segment-edge
 //    vec2 v_dir_i0i1 = normalize(u_v_e1 - u_v_e0);
 //    float f_dot = abs(dot(normalize(u_v_e0), v_dir_i0i1));
 //    if (f_dot > 0.99519)
@@ -62,22 +62,22 @@ void main()
 }
 
 ////////////////////////////////////////////////////////////
-/// \brief Calcul un coefficient de pénombre (Methode2-b)
+/// \brief Calcul un coefficient de penombre (Methode2-b)
 ///
 /// \param v_pos position du texel en light space
 /// \param v_edges positions des sommets de l'edge en light space
-/// \param v_normal normale de la ligne liant v_edge au centre de la source de lumière (elle peut ne pas être unitaire ou orientée, on ne désire que sa direction)
+/// \param v_normal normale de la ligne liant v_edge au centre de la source de lumiere (elle peut ne pas ÃƒÂƒÃ‚Âªtre unitaire ou orientee, on ne desire que sa direction)
 ///
-/// \return coefficient de pénombre compris dans [0, 1]
+/// \return coefficient de penombre compris dans [0, 1]
 ///
 ////////////////////////////////////////////////////////////
 float compute_penumbra_rp(in vec2 v_pos, in vec2 v_edges[2], in vec2 v_normal)
 {
-    // -    Méthode2-b par retro-projection de l'edge sur la source de lumière
+    // -    Methode2-b par retro-projection de l'edge sur la source de lumiere
 
-    // - intersection des lignes: (v_pos, v_edge) (centre de la lumière, un des 2 centres de projection pour la lumière étendue)
-    //      L'intersection peut etre considérer comme la projection du sommet edge sur la source de lumière.
-    //      La distance de cette intersection nous fournit un coefficient de recouvrement/d'occlusion de la projection de l'arête sur la source de lumière.
+    // - intersection des lignes: (v_pos, v_edge) (centre de la lumiere, un des 2 centres de projection pour la lumiere etendue)
+    //      L'intersection peut etre considerer comme la projection du sommet edge sur la source de lumiere.
+    //      La distance de cette intersection nous fournit un coefficient de recouvrement/d'occlusion de la projection de l'arÃƒÂƒÃ‚Âªte sur la source de lumiere.
     vec2    intersections_lines[2];
     float   lengths[2];
 
@@ -109,15 +109,15 @@ vec2 compute_intersection_lines(vec2 P1, vec2 P2, vec2 P3, vec2 P4)
 
 bool inside_half_plane(in vec2 A, in vec2 B, in vec2 P)
 {
-    // Du bon coté du demi-plan dont l'edge est la frontière (ou sa droite) et orienté pour ne pas contenir la source de lumière
-    // equation paramétrique d'une droite: (1) a.x + b.y + c = 0, avec (a,b) normale de la droite
+    // Du bon cote du demi-plan dont l'edge est la frontiere (ou sa droite) et oriente pour ne pas contenir la source de lumiere
+    // equation parametrique d'une droite: (1) a.x + b.y + c = 0, avec (a,b) normale de la droite
     vec2 v_dir      = B - A;
     vec2 v_normal   = NORMAL(v_dir);
     // on calcul c => c = -(a*x + b*y), on prend (x, y) = A (1 point de la droite)
     float c = - dot(v_normal, A);
-    // dans quel sens la normale est orientée pour relier le point P et la droite ?
+    // dans quel sens la normale est orientee pour relier le point P et la droite ?
     float side_of_P = dot(P, v_normal) + c;
-    // selon le sens (qui indique le sens de la normale), on détermine si le point est dans le demi-plan
+    // selon le sens (qui indique le sens de la normale), on determine si le point est dans le demi-plan
     return (side_of_P*sign(c)<0);
 }
 

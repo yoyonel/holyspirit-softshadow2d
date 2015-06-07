@@ -14,11 +14,11 @@ Typ_Solutions_Quadratic_Equation Solve_Quadratic_Equation(float A, float B, floa
 {
     Typ_Solutions_Quadratic_Equation solutions = {false, 0, 0};
 
-    // (1-b)  système quadratique: Ax² + Bx + C = 0
+    // (1-b)  systeme quadratique: AxÃƒÂ‚Ã‚Â² + Bx + C = 0
     float f_constant    = C;
     float f_linear      = B;
     float f_quadratic   = A;
-    // - f_delta: discriminant de l'équation
+    // - f_delta: discriminant de l'equation
     float f_delta       = f_linear*f_linear - 4*f_constant*f_quadratic;
     // si
     // - f_delta < 0: 0 solution    <=> pas d'intersections
@@ -26,13 +26,13 @@ Typ_Solutions_Quadratic_Equation Solve_Quadratic_Equation(float A, float B, floa
     // - f_delta > 0: 2 solutions   <=> la droite intersecte en deux points (distinctes) le cercle
     solutions.b_has_solutions = f_delta > 0+EPSILON;
 
-    // - si intersection (la ligne support avec le cercle de lumière)
+    // - si intersection (la ligne support avec le cercle de lumiere)
     if (solutions.b_has_solutions)
     {
         // - calcul des points d'intersections
-        //      f_quadratic*x² + f_linear*x + f_constant = 0
-        //      delta = f_linear² - 4*f_quadratic*f_constant (delta>0)
-        //          1ère solution= (-f_linear+racine(delta))/(2*f_quadratic)
+        //      f_quadratic*xÃƒÂ‚Ã‚Â² + f_linear*x + f_constant = 0
+        //      delta = f_linearÃƒÂ‚Ã‚Â² - 4*f_quadratic*f_constant (delta>0)
+        //          1ere solution= (-f_linear+racine(delta))/(2*f_quadratic)
         //          2nde solution= (-f_linear-racine(delta))/(2*f_quadratic)
         float f_square_root_delta = sqrt(f_delta);
         float f_denum = 1.f/(2*f_quadratic);
@@ -45,7 +45,7 @@ Typ_Solutions_Quadratic_Equation Solve_Quadratic_Equation(float A, float B, floa
 
 Typ_Solutions_Quadratic_Equation Solve_Quadratic_Equation(vec2 _A, vec2 _AB, float _radius)
 {
-    // (1-b)  système quadratique pour trouver les intersections de la droite support du mur et le cercle à l'origine
+    // (1-b)  systeme quadratique pour trouver les intersections de la droite support du mur et le cercle ÃƒÂƒÃ‚  l'origine
     float f_constant    = NORM2(_A) - _radius;
     float f_linear      = 2*DOT(_A, _AB);
     float f_quadratic   = NORM2(_AB);
@@ -55,11 +55,11 @@ Typ_Solutions_Quadratic_Equation Solve_Quadratic_Equation(vec2 _A, vec2 _AB, flo
 
 bool Quadratic_Equation_Has_Solutions(vec2 _A, vec2 _AB, float _radius)
 {
-    // (1-b)  système quadratique pour trouver les intersections de la droite support du mur et le cercle à l'origine
+    // (1-b)  systeme quadratique pour trouver les intersections de la droite support du mur et le cercle ÃƒÂƒÃ‚  l'origine
     float f_constant    = NORM2(_A) - _radius;
     float f_linear      = 2.f*DOT(_A, _AB);
     float f_quadratic   = NORM2(_AB);
-    // - f_delta: discriminant de l'équation
+    // - f_delta: discriminant de l'equation
     float f_delta       = f_linear*f_linear - 4.f*f_constant*f_quadratic;
     // si
     // - f_delta < 0: 0 solution    <=> pas d'intersections
@@ -68,7 +68,7 @@ bool Quadratic_Equation_Has_Solutions(vec2 _A, vec2 _AB, float _radius)
     return (f_delta > 0.f);
 }
 
-// P1, P2 points sur un même cercle
+// P1, P2 points sur un mÃƒÂƒÃ‚Âªme cercle
 // Line0: (P1, P2=P1 + normal(OP1))
 // Line1: (P3, P4=P3 + normal(OP2))
 // result: intersection point
@@ -120,7 +120,7 @@ bool Compute_Intersection_Segments( const vec2& P1, const vec2& P2, const vec2& 
     const vec2 P3_P4 = P4-P3;
     const vec2 P_P4  = P4-P;
     const vec2 P_P2  = P2-P;
-    // dans le meme sens, et de longueur (carrée) inférieure à celui du segment
+    // dans le meme sens, et de longueur (carree) inferieure ÃƒÂƒÃ‚  celui du segment
     b_segments_intersect =
         DOT(P1_P2, P_P2) >= 0.0 && NORM2(P_P2) <= NORM2(P1_P2) &&
         DOT(P3_P4, P_P4) >= 0.0 && NORM2(P_P4) <= NORM2(P3_P4);
@@ -129,7 +129,7 @@ bool Compute_Intersection_Segments( const vec2& P1, const vec2& P2, const vec2& 
 }
 
 // url: http://mathworld.wolfram.com/Circle-CircleIntersection.html
-// Méthode utilisant un changement de repère (2D)
+// Methode utilisant un changement de repere (2D)
 bool Compute_Intersection_Circles_1(const vec2& O0, const float R0, const vec2& O1, const float R1, vec2 P[2])
 {
     bool b_has_intersections = false;
@@ -144,7 +144,7 @@ bool Compute_Intersection_Circles_1(const vec2& O0, const float R0, const vec2& 
     const float d2 = d*d;
     const float r2 = r*r;
     const float R2 = R*R;
-    // Calcul de la coordonnée x commune aux 2 intersections
+    // Calcul de la coordonnee x commune aux 2 intersections
     const float denum       = 1/(2*d);
     const float denum2      = denum*denum;
     const float x           = (d2 - r2 + R2)*denum;
@@ -155,10 +155,10 @@ bool Compute_Intersection_Circles_1(const vec2& O0, const float R0, const vec2& 
         const float y01         = sqrtf(square_y);
         const float y0          = +y01;
         const float y1          = -y01;
-        // Normalisation des vecteurs caractérisant les axes du repère de calcul d'intersections
+        // Normalisation des vecteurs caracterisant les axes du repere de calcul d'intersections
         O0_to_01        = O0_to_01 / d;
         normal_O0_to_01 = NORMALIZE(normal_O0_to_01);
-        // Reconstruction des solutions (i.e. projection sur les axes du repère, local -> world)
+        // Reconstruction des solutions (i.e. projection sur les axes du repere, local -> world)
         P[0] = O0_to_01*x + normal_O0_to_01*y0;
         P[1] = O0_to_01*x + normal_O0_to_01*y1;
 
@@ -172,7 +172,7 @@ bool Compute_Intersection_Circles_1(const vec2& O0, const float R0, const vec2& 
     return b_has_intersections;
 }
 
-// Méthode brute force, sans changement de repère
+// Methode brute force, sans changement de repere
 // url: http://math.15873.pagesperso-orange.fr/IntCercl.html#ancre0
 bool Compute_Intersection_Circles_0(const vec2& O0, const float R0, const vec2& O1, const float R1, vec2 P[2])
 {
@@ -224,7 +224,7 @@ bool Compute_Intersection_Circles_0(const vec2& O0, const float R0, const vec2& 
     return intersections.b_has_solutions;
 }
 
-// Repère main droite pour retrouver le sens de la normale de la droite (son 'Z')
+// Repere main droite pour retrouver le sens de la normale de la droite (son 'Z')
 float signed_distance_point_line( const vec2& P, const vec2& A, const vec2& B )
 {
     vec2 AB = B - A;
@@ -285,13 +285,13 @@ bool Compute_Intersection_Segment_Circle(
     {
         float f_square_radius_light = r*r;
 
-        // (1-b)  système quadratique pour trouver les intersections de la droite support du mur et le cercle d'influence à l'origine
+        // (1-b)  systeme quadratique pour trouver les intersections de la droite support du mur et le cercle d'influence ÃƒÂƒÃ‚  l'origine
         Typ_Solutions_Quadratic_Equation solutions = Solve_Quadratic_Equation(l1, l1_to_l2, f_square_radius_light);
 
         //
         bool b_wall_intersect_circle = true;
 
-        // - si intersection (la ligne support avec le cercle de lumière)
+        // - si intersection (la ligne support avec le cercle de lumiere)
         if (solutions.b_has_solutions)
         {
             const float &f_u1 = solutions.f_u0;
@@ -301,10 +301,10 @@ bool Compute_Intersection_Segment_Circle(
                 sf::Vector2f(l1 + l1_to_l2*f_u1),
                 sf::Vector2f(l1 + l1_to_l2*f_u2)
             };
-            // On calcul les distances au carré
+            // On calcul les distances au carre
             //  du segment [l1, l2]
-            //  du segment [O, l1] (O: centre de la source de lumière => O=(0, 0))
-            //  du segment [O, l2] (O: centre de la source de lumière => O=(0, 0))
+            //  du segment [O, l1] (O: centre de la source de lumiere => O=(0, 0))
+            //  du segment [O, l2] (O: centre de la source de lumiere => O=(0, 0))
             //  du segment [l1, i1]
             //  du segment [l1, i2]
             float f_square_l1l2 = DOT(l1_to_l2, l1_to_l2);
@@ -347,8 +347,8 @@ bool Compute_Intersection_Segment_Circle(
             }
             else
             {
-                // sinon le segment/wall n'intersecte pas le cercle de lumière (donc ne projette pas d'ombre)
-                // Ce cas correspond à la présence du segment dans un coin de la boundingbox du cercle (mais non inclut dans le cercle)
+                // sinon le segment/wall n'intersecte pas le cercle de lumiere (donc ne projette pas d'ombre)
+                // Ce cas correspond ÃƒÂƒÃ‚  la presence du segment dans un coin de la boundingbox du cercle (mais non inclut dans le cercle)
                 b_wall_intersect_circle = false;
             }
         }
@@ -362,18 +362,18 @@ sf::Shape construct_shadow_volume_shape( const vec2 &pos_light, const float r, c
 {
     sf::Shape shape;
 
-    // projection des sommets clippés sur le cercle d'influence de la lumière
+    // projection des sommets clippes sur le cercle d'influence de la lumiere
     proj_intersections[0] = NORMALIZE(intersections_segment_circle[0]) * r;
     proj_intersections[1] = NORMALIZE(intersections_segment_circle[1]) * r;
 
-    // Milieu du segment clippé
+    // Milieu du segment clippe
     sf::Vector2f mid_i0_i1       = COMPUTE_MIDDLE(proj_intersections[0], proj_intersections[1]);
     // Projection du milieu (a) sur le cercle
     sf::Vector2f proj_mid_i0_i1  = NORMALIZE(mid_i0_i1) * r;
     // Calcul des vertex englobant
-    // Ils correspondent aux intersections des lignes formées par:
+    // Ils correspondent aux intersections des lignes formees par:
     //  les sommets de projection des intersections
-    //  et leurs normales associées, tangentes au cercle.
+    //  et leurs normales associees, tangentes au cercle.
     bounding_vertex_sv[0] = Compute_Intersection_Lines(proj_intersections[0], proj_mid_i0_i1);
     bounding_vertex_sv[1] = Compute_Intersection_Lines(proj_intersections[1], proj_mid_i0_i1);
 
@@ -387,7 +387,7 @@ sf::Shape construct_shadow_volume_shape( const vec2 &pos_light, const float r, c
     // On regle le shape sans blending et on fournit la position
     shape.SetBlendMode(sf::Blend::None);
     shape.SetPosition(pos_light);
-    // - ajout dans la shape SV des quads (sv) ainsi générés
+    // - ajout dans la shape SV des quads (sv) ainsi generes
     //m_shape_sv.push_back(shape);
 
     return shape;

@@ -28,8 +28,8 @@ float   hermite(float s, float P1, float P2, float T1, float T2);
 
 void main()
 {
-    vec2    v_pos_in_ls         = v_v_position - u_v_position_light; // position du vertex edge dans le repère lumière (Light Space)
-    vec2    v_pos_light_in_ls   = vec2(0.f); // origine du repère
+    vec2    v_pos_in_ls         = v_v_position - u_v_position_light; // position du vertex edge dans le repere lumiere (Light Space)
+    vec2    v_pos_light_in_ls   = vec2(0.f); // origine du repere
 
     if (length(v_pos_in_ls) > u_f_influence_radius_light )
         discard;
@@ -50,9 +50,9 @@ void main()
     #ifdef  __USE_METHOD_WITH_DISTANCE__
         coef_penumbra = coef_penumbra_wd;
     #endif
-//    coef_penumbra = abs(coef_penumbra_wd - coef_penumbra_rp)*10; // différence entre les méthodes (normalement il ne devrait pas en avoir ...)
+//    coef_penumbra = abs(coef_penumbra_wd - coef_penumbra_rp)*10; // difference entre les methodes (normalement il ne devrait pas en avoir ...)
 
-    // remap le coefficient de pénombre
+    // remap le coefficient de penombre
     #ifdef __USE_REMAP__
         coef_penumbra = REMAP_PENUMBRA(coef_penumbra);
     #endif
@@ -61,67 +61,67 @@ void main()
 }
 
 ////////////////////////////////////////////////////////////
-/// \brief Calcul un coefficient de pénombre (Methode1)
+/// \brief Calcul un coefficient de penombre (Methode1)
 ///
 /// \param v_pos position du texel en light space
 /// \param v_edge position du sommet de l'edge en light space
 ///
-/// \return coefficient de pénombre compris dans [0, 1]
+/// \return coefficient de penombre compris dans [0, 1]
 ///
 ////////////////////////////////////////////////////////////
 float compute_penumbra_wd(in vec2 v_pos, in vec2 v_edge)
 {
-    // -    Méthode par calcul du ratio de la distance entre le point courant et
-    //      sa projection orthogonale sur l'axe reliant le vertex edge et le centre de la source de lumière (droite support du Shadow-Volume)
+    // -    Methode par calcul du ratio de la distance entre le point courant et
+    //      sa projection orthogonale sur l'axe reliant le vertex edge et le centre de la source de lumiere (droite support du Shadow-Volume)
 
-    // distance du texel courant par rapport à
-    // l'axe reliant le centre de la source de lumière et le vertex de l'edge
+    // distance du texel courant par rapport ÃƒÂƒÃ‚ 
+    // l'axe reliant le centre de la source de lumiere et le vertex de l'edge
     float   f_dist_P    = distance_point_line(v_edge, vec2(0), v_pos);
-    // Utilisation d'un théorème de Thalès pour calculer des rapports de distance
+    // Utilisation d'un theoreme de Thales pour calculer des rapports de distance
     float   f_l         = u_f_radius_light*distance(v_pos, v_edge)/length(v_edge);
-    // Calcul du coefficient de pénombre (une approximation)
+    // Calcul du coefficient de penombre (une approximation)
     return abs(f_dist_P/f_l);
 }
 
 ////////////////////////////////////////////////////////////
-/// \brief Calcul un coefficient de pénombre (Methode2-a)
+/// \brief Calcul un coefficient de penombre (Methode2-a)
 ///
 /// \param v_pos position du texel en light space
 /// \param v_edge position du sommet de l'edge en light space
-/// \param v_normal normale de la ligne liant v_edge au centre de la source de lumière (elle peut ne pas être unitaire ou orientée, on ne désire que sa direction)
+/// \param v_normal normale de la ligne liant v_edge au centre de la source de lumiere (elle peut ne pas ÃƒÂƒÃ‚Âªtre unitaire ou orientee, on ne desire que sa direction)
 ///
-/// \return coefficient de pénombre compris dans [0, 1]
+/// \return coefficient de penombre compris dans [0, 1]
 ///
 ////////////////////////////////////////////////////////////
 float compute_penumbra_rp(in vec2 v_pos, in vec2 v_edge, in vec2 v_normal)
 {
-    // -    Méthode2-a par retro-projection d'un sommet de l'edge sur la source de lumière ("reconstruction" du recouvrement de l'arête sur la source de lumière)
-    //      hypothèse: les volumes de pénombres des sommets consécutifs ne se recouvrent pas.
-    // - intersection des lignes: (v_pos, v_edge) (centre de la lumière, un des 2 centres de projection pour la lumière étendue)
-    //      L'intersection peut etre considérer comme la projection du sommet edge sur la source de lumière.
-    //      La distance de cette intersection nous fournit un coefficient de recouvrement/d'occlusion de la projection de l'arête sur la source de lumière.
+    // -    Methode2-a par retro-projection d'un sommet de l'edge sur la source de lumiere ("reconstruction" du recouvrement de l'arÃƒÂƒÃ‚Âªte sur la source de lumiere)
+    //      hypothese: les volumes de penombres des sommets consecutifs ne se recouvrent pas.
+    // - intersection des lignes: (v_pos, v_edge) (centre de la lumiere, un des 2 centres de projection pour la lumiere etendue)
+    //      L'intersection peut etre considerer comme la projection du sommet edge sur la source de lumiere.
+    //      La distance de cette intersection nous fournit un coefficient de recouvrement/d'occlusion de la projection de l'arÃƒÂƒÃ‚Âªte sur la source de lumiere.
     vec2 intersection_lines = compute_intersection_lines( v_pos, v_edge, vec2(0), v_normal);
-    // rapport de distance qui nous fournit le coefficient de pénombre (ou recouvrement de la source de lumière par l'arête)
+    // rapport de distance qui nous fournit le coefficient de penombre (ou recouvrement de la source de lumiere par l'arÃƒÂƒÃ‚Âªte)
     return (length(intersection_lines)/u_f_radius_light);
 }
 
 ////////////////////////////////////////////////////////////
-/// \brief Calcul un coefficient de pénombre (Methode2-b)
+/// \brief Calcul un coefficient de penombre (Methode2-b)
 ///
 /// \param v_pos position du texel en light space
 /// \param v_edges positions des sommets de l'edge en light space
-/// \param v_normal normale de la ligne liant v_edge au centre de la source de lumière (elle peut ne pas être unitaire ou orientée, on ne désire que sa direction)
+/// \param v_normal normale de la ligne liant v_edge au centre de la source de lumiere (elle peut ne pas ÃƒÂƒÃ‚Âªtre unitaire ou orientee, on ne desire que sa direction)
 ///
-/// \return coefficient de pénombre compris dans [0, 1]
+/// \return coefficient de penombre compris dans [0, 1]
 ///
 ////////////////////////////////////////////////////////////
 float compute_penumbra_rp(in vec2 v_pos, in vec2 v_edges[2], in vec2 v_normal)
 {
-    // -    Méthode2-b par retro-projection de l'edge sur la source de lumière
+    // -    Methode2-b par retro-projection de l'edge sur la source de lumiere
 
-    // - intersection des lignes: (v_pos, v_edge) (centre de la lumière, un des 2 centres de projection pour la lumière étendue)
-    //      L'intersection peut etre considérer comme la projection du sommet edge sur la source de lumière.
-    //      La distance de cette intersection nous fournit un coefficient de recouvrement/d'occlusion de la projection de l'arête sur la source de lumière.
+    // - intersection des lignes: (v_pos, v_edge) (centre de la lumiere, un des 2 centres de projection pour la lumiere etendue)
+    //      L'intersection peut etre considerer comme la projection du sommet edge sur la source de lumiere.
+    //      La distance de cette intersection nous fournit un coefficient de recouvrement/d'occlusion de la projection de l'arÃƒÂƒÃ‚Âªte sur la source de lumiere.
     vec2    intersections_lines[2];
     float   lengths[2];
 
@@ -133,7 +133,7 @@ float compute_penumbra_rp(in vec2 v_pos, in vec2 v_edges[2], in vec2 v_normal)
 
     float f_coef_covering = u_f_radius_light - (min(lengths[1], u_f_radius_light) - lengths[0]);
 
-    // rapport de distance qui nous fournit le coefficient de pénombre (ou recouvrement de la source de lumière par l'arête)
+    // rapport de distance qui nous fournit le coefficient de penombre (ou recouvrement de la source de lumiere par l'arÃƒÂƒÃ‚Âªte)
     return f_coef_covering/u_f_radius_light;
 }
 

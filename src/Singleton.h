@@ -50,12 +50,12 @@ protected:
 
     CSingleton() : value(0)
     {
-        std::cout<<"Singleton cr�e"<<std::endl;
+        std::cout<<"Singleton crÃÂ©e"<<std::endl;
     }
 
     virtual ~CSingleton()
     {
-        std::cout<<"Singleton d�truit"<<std::endl;
+        std::cout<<"Singleton dÃÂ©truit"<<std::endl;
     }
 
     static T *singleton;

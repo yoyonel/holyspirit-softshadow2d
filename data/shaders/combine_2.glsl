@@ -5,13 +5,13 @@
 
 #define EPSILON 0.001
 
-#define USE_LIGHTING        // Utilise les calculs de lumières (ombres, normal map, attenuation, etc ...)
+#define USE_LIGHTING        // Utilise les calculs de lumieres (ombres, normal map, attenuation, etc ...)
 #define USE_SHADOW          // Affiche les ombres
 #define USE_NORMALMAP       // Utilise la map de normal map pour "bosseler" le sol
-#define USE_ATTENUATION     // Utilise un coefficient d'atténuation lié à la distance du centre de la lumière
-#define USE_COLOR           // Utilise la couleur de la lumière
-//#define USE_HARDSHADOW    // Affiche les volumes d'ombres dures (pas tout a fait équivalent à une source ponctuelle de lumière (en terme de visibilité))
-//#define DEBUG_SHOW_HS_PV  // Affiche les volumes de pénombres et ombres dures
+#define USE_ATTENUATION     // Utilise un coefficient d'attenuation lie ÃƒÂƒÃ‚  la distance du centre de la lumiere
+#define USE_COLOR           // Utilise la couleur de la lumiere
+//#define USE_HARDSHADOW    // Affiche les volumes d'ombres dures (pas tout a fait equivalent ÃƒÂƒÃ‚  une source ponctuelle de lumiere (en terme de visibilite))
+//#define DEBUG_SHOW_HS_PV  // Affiche les volumes de penombres et ombres dures
 
 #ifdef USE_NORMALMAP
     uniform sampler2D   u_texture_normal_map;
@@ -40,7 +40,7 @@ float compute_normal_map( in vec3 P, in vec3 L, in vec2 tex_coords_nm );
 float compute_attenuation( in vec3 P, in vec3 L, in float R );
 float compute_attenuation( in float d, in float coefs_att[3] );
 
-// [MOG] : décodage des infos
+// [MOG] : decodage des infos
 #define decode_shadow decode_shadow_R
 //#define decode_shadow decode_shadow_RGBA
 //
@@ -59,10 +59,10 @@ void main()
     float   z_point = 0.0;  //                          point receiver
     vec2    v2_pos_in_ls        = v_v_position - u_v_position_light;
     vec2    v2_pos_light_in_ls  = vec2(0);
-    vec3    v3_pos_in_ls        = vec3(v2_pos_in_ls,       z_point);   // position du vertex edge dans le repère lumière (Light Space)
-    vec3    v3_pos_light_in_ls  = vec3(v2_pos_light_in_ls, z_light);   // origine du repère
+    vec3    v3_pos_in_ls        = vec3(v2_pos_in_ls,       z_point);   // position du vertex edge dans le repere lumiere (Light Space)
+    vec3    v3_pos_light_in_ls  = vec3(v2_pos_light_in_ls, z_light);   // origine du repere
 
-    // Distance en espace écran (coord2D)
+    // Distance en espace ecran (coord2D)
     if ( dot(v2_pos_in_ls, v2_pos_in_ls) > u_f_influence_radius_light*u_f_influence_radius_light )
         discard;
 
@@ -81,7 +81,7 @@ void main()
         normal_map  = compute_normal_map(
                                      v3_pos_in_ls,
                                      v3_pos_light_in_ls,
-                                     vec2(gl_TexCoord[0].x, 1.0-gl_TexCoord[0].y) // changement de repère: symétrie selon l'axe x (<=> inverse des y)
+                                     vec2(gl_TexCoord[0].x, 1.0-gl_TexCoord[0].y) // changement de repere: symetrie selon l'axe x (<=> inverse des y)
                                      );
 
         lighting    *= normal_map;
@@ -131,8 +131,8 @@ void main()
         vec3 L = normalize(Light-P);
         vec3 N = normalize(normal);
         float normal_map = max(dot(N, L),  0.0);
-        // Scale le lighting lié à la normal map
-        // revient à modifier la courbe de la pente (et sa valeur min)
+        // Scale le lighting lie ÃƒÂƒÃ‚  la normal map
+        // revient ÃƒÂƒÃ‚  modifier la courbe de la pente (et sa valeur min)
         float nm_scale = +0.45;
         normal_map = (normal_map + nm_scale) / (1.0 + nm_scale); // [MOG]: scale lighting normal-map
 

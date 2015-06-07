@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------------------
 // file: pixel_ss_2d_wil_type2
 // --------------------------------------------------------------------------------
-// action:  calcul d'occlusion d'un mur par rappport à une source de lumière disque
+// action:  calcul d'occlusion d'un mur par rappport ÃƒÂƒÃ‚  une source de lumiere disque
 //          _wil:   Wall In Light
-//          =>      Le segment mur est à l'intérieur de la source de lumière.
+//          =>      Le segment mur est ÃƒÂƒÃ‚  l'interieur de la source de lumiere.
 //          _type2:
 //              E0: ON_CIRCLE
 //              I0: ON_CIRCLE
@@ -64,11 +64,11 @@ vec4    encode_shadow_DEBUG(float coef_shadow);
 
 void main()
 {
-    vec2    v_pos_in_ls         = v_v_position - u_v_position_light; // position du vertex edge dans le repère lumière (Light Space)
-    vec2    v_pos_light_in_ls   = vec2(0.); // origine du repère
+    vec2    v_pos_in_ls         = v_v_position - u_v_position_light; // position du vertex edge dans le repere lumiere (Light Space)
+    vec2    v_pos_light_in_ls   = vec2(0.); // origine du repere
 
     // Tests pour rejeter rapidement (le plus possible)
-    // les points non inclus dans la zone d'influence de pénombre de l'arête par rapport au cercle de lumière
+    // les points non inclus dans la zone d'influence de penombre de l'arÃƒÂƒÃ‚Âªte par rapport au cercle de lumiere
     tests_for_discard_texel( v_pos_in_ls );
 
     // shadow coefficient
@@ -120,7 +120,7 @@ vec4 encode_shadow_RGBA(float f_coef_shadow)
     return color;
 }
 
-// Repère main droite pour retrouver le sens de la normale de la droite (son 'Z')
+// Repere main droite pour retrouver le sens de la normale de la droite (son 'Z')
 float signed_distance_point_line( in vec2 P, in vec2 A, in vec2 B )
 {
     vec2 AB = B - A;
@@ -144,15 +144,15 @@ float area_triangle( in vec2 A, in vec2 B, in vec2 C )
 // [OK]
 bool inside_half_plane(in vec2 A, in vec2 B, in vec2 P)
 {
-    // Du bon coté du demi-plan dont l'edge est la frontière (ou sa droite) et orienté pour ne pas contenir la source de lumière
-    // equation paramétrique d'une droite: (1) a.x + b.y + c = 0, avec (a,b) normale de la droite
+    // Du bon cote du demi-plan dont l'edge est la frontiere (ou sa droite) et oriente pour ne pas contenir la source de lumiere
+    // equation parametrique d'une droite: (1) a.x + b.y + c = 0, avec (a,b) normale de la droite
     vec2 v_dir      = B - A;
     vec2 v2_normal   = NORMAL(v_dir);
     // on calcul c => c = -(a*x + b*y), on prend (x, y) = A (1 point de la droite)
     float c = - dot(v2_normal, A);
-    // dans quel sens la normale est orientée pour relier le point P et la droite ?
+    // dans quel sens la normale est orientee pour relier le point P et la droite ?
     float side_of_P = dot(P, v2_normal) + c;
-    // selon le sens (qui indique le sens de la normale), on détermine si le point est dans le demi-plan
+    // selon le sens (qui indique le sens de la normale), on determine si le point est dans le demi-plan
     return (side_of_P*sign(c) < -1000*EPSILON);
 }
 
@@ -165,7 +165,7 @@ vec2 compute_projection_on_circle( in vec2 E, in vec2 P, in float r, in float in
     vec2 pos_light= vec2(0.);
 
     f_signed_distance = signed_distance_point_line( pos_light, P, E );
-    // [TODO]: à simplifier !
+    // [TODO]: ÃƒÂƒÃ‚  simplifier !
     d = f_signed_distance*inv_r;
     a = acos(d);
     y = normalize(E-P);
@@ -188,7 +188,7 @@ float compute_disc_portion_area( in vec2 P0, in vec2 P1, in float r )
 
     alpha = acosf(d/r); // angle
     aire_secteur_angulaire = alpha*r*r;
-    aire_triangle_isocele = d*sqrtf(r*r - d*d); // se décomposé en deux triangles rectangles dont le rayon du cercle sont les hypothénuses
+    aire_triangle_isocele = d*sqrtf(r*r - d*d); // se decompose en deux triangles rectangles dont le rayon du cercle sont les hypothenuses
 
     // aire de la portion de disque
     A = alpha*r*r - d*sqrtf(r*r - d*d);
@@ -241,10 +241,10 @@ float   compute_visibility_light_on_on(in vec2 P, in vec2 E0, in vec2 E1, in flo
 }
 
 // [OK]
-// calcul la visibilité de la lumière
+// calcul la visibilite de la lumiere
 // pour un point P
-// occulté par un segment défini
-// par deux points E0 et E1 en dehors ou sur le disque de lumière
+// occulte par un segment defini
+// par deux points E0 et E1 en dehors ou sur le disque de lumiere
 float compute_visibility_light(in vec2 P, in vec2 E0, in vec2 E1, in float r)
 {
     float visibilty = 1.;
@@ -267,7 +267,7 @@ float compute_visibility_light(in vec2 P, in vec2 E0, in vec2 E1, in float r)
     vec2 n_P_E1 = NORMAL(normalize(P_E1));
     // Orientation du volume d'ombre
     A0 = DOT(n_P_E0, +1.*Edge) > EPSILON ? (1. - A0) : A0;
-    // A t'on calculé l'aire de visibilité ou d'occultation ?
+    // A t'on calcule l'aire de visibilite ou d'occultation ?
     A1 = DOT(n_P_E1, -1.*Edge) > EPSILON ? (1. - A1) : A1;
     // Sens de projection de l'ombre
     A0 = float(DOT(P_E0, E0) < -EPSILON) * A0;

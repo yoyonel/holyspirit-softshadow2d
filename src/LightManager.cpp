@@ -49,7 +49,7 @@ Light_Manager::~Light_Manager()
     m_StaticLight.clear();
 }
 
-// Les différents moyens d'ajouter des lumières
+// Les differents moyens d'ajouter des lumieres
 
 Light_Entity Light_Manager::Add_Dynamic_Light()
 {
@@ -67,7 +67,7 @@ Light_Entity Light_Manager::Add_Dynamic_Light(sf::Vector2f position, float inten
     return Light_Entity((int)m_DynamicLight.size()-1,true);
 }
 
-// Les différents moyens d'ajouter des lumières directionelles
+// Les differents moyens d'ajouter des lumieres directionelles
 
 Light_Entity Light_Manager::Add_Dynamic_Directional_Light()
 {
@@ -103,7 +103,7 @@ Light_Entity Light_Manager::Add_Dynamic_Light_SV(sf::Vector2f position, float in
     return Light_Entity((int)m_DynamicLight.size()-1,true);
 }
 
-// Notez bien qu'on calcule les lumières statiques lors de leur ajout.
+// Notez bien qu'on calcule les lumieres statiques lors de leur ajout.
 
 Light_Entity Light_Manager::Add_Static_Light(Light light)
 {
@@ -118,7 +118,7 @@ Light_Entity Light_Manager::Add_Static_Light(sf::Vector2f position, float intens
     return Light_Entity((int)m_StaticLight.size()-1,false);
 }
 
-// Notez bien qu'on calcule les lumières statiques lors de leur ajout.
+// Notez bien qu'on calcule les lumieres statiques lors de leur ajout.
 
 Light_Entity Light_Manager::Add_Static_Directional_Light(Directional_light light)
 {
@@ -191,7 +191,7 @@ Wall_Entity Light_Manager::Add_Wall(sf::Vector2f pt1,sf::Vector2f pt2)
     return Wall_Entity(m_wall.size()-1);
 }
 
-// On désactive une lumière
+// On desactive une lumiere
 void Light_Manager::Delete_Light(Light_Entity e)
 {
     if(e.Dynamic())
@@ -231,13 +231,13 @@ void Light_Manager::Delete_All_Light()
     m_StaticLight.clear();
 }
 
-// On calcule toutes les lumières dynamiques actives
+// On calcule toutes les lumieres dynamiques actives
 void Light_Manager::Generate()
 {
     m_renderImg.Clear(m_basicLight);
 
     //BlurEffect.SetParameter("offset",0.005 * m_lightSmooth);
-    // Texture Space Coordinates: [0, 1]²
+    // Texture Space Coordinates: [0, 1]ÃƒÂ‚Ã‚Â²
     // Image space Coordinates: [0, width-1]x[0, height-1]
     BlurEffect.SetParameter("offsetX", (float)(m_lightSmooth)/m_renderImg.GetWidth());
     BlurEffect.SetParameter("offsetY", (float)(m_lightSmooth)/m_renderImg.GetHeight());
@@ -267,7 +267,7 @@ void Light_Manager::Generate(Light_Entity e)
             m_DynamicLight[e.ID()]->Generate(m_wall);
 }
 
-// On crée une image avec toutes les lumières actives
+// On cree une image avec toutes les lumieres actives
 void Light_Manager::Draw(sf::RenderWindow *App)
 {
     sf::Sprite sprite;
@@ -283,7 +283,7 @@ void Light_Manager::Draw(sf::RenderWindow *App)
     #endif
 }
 
-// On modifie ou récupère les attributs de lumières dynamiques
+// On modifie ou recupere les attributs de lumieres dynamiques
 
 void Light_Manager::SetPosition(Light_Entity e, sf::Vector2f p)
 {
@@ -378,7 +378,7 @@ sf::Vector2f Light_Manager::GetPosition(Light_Entity e)
 
 
 
-// On modifie ou récupère différents attributs des murs
+// On modifie ou recupere differents attributs des murs
 
 void Light_Manager::SetPosition(Wall_Entity e, sf::Vector2f p)
 {

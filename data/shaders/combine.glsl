@@ -10,8 +10,8 @@ float hermite(float s, float P1, float P2, float T1, float T2);
 
 void main()
 {
-    vec2    v_pos_in_ls         = v_v_position - u_v_position_light; // position du vertex edge dans le repère lumière (Light Space)
-    vec2    v_pos_light_in_ls   = vec2(0.f); // origine du repère
+    vec2    v_pos_in_ls         = v_v_position - u_v_position_light; // position du vertex edge dans le repere lumiere (Light Space)
+    vec2    v_pos_light_in_ls   = vec2(0.f); // origine du repere
 
     if (length(v_pos_in_ls) > u_f_influence_radius_light)
         discard;

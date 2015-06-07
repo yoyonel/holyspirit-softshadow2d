@@ -21,21 +21,23 @@ include_directories("${PROJECT_BINARY_DIR}")
 set(EXECUTABLE_NAME "light_test")
 
 AUX_SOURCE_DIRECTORY(src SRCFILES)
-
 MESSAGE(SRCFILES: ${SRCFILES})
 
+file(GLOB RES_FILES data/shaders/*.glsl data/shaders/*.sfx)
+
 include_directories(src)
-#include_directories("/home/latty/__DEV__/__LOISIRS__/sfml2_custom/src")
 
 add_executable(
 	${EXECUTABLE_NAME} 
+        ${RES_FILES}
 	${SRCFILES}
 	)
 
 
 # Detect and add SFML
 # local [MOG]
-set(SFMLDIR "/home/latty/__DEV__/__LOISIRS__/install/sfml2_custom")
+#set(SFMLDIR "/home/latty/__DEV__/__LOISIRS__/install/sfml2_custom")
+set(SFMLDIR "/home/atty/Prog/install/sflm2-modify-with_fbo_stencil")
 MESSAGE([LOCAL] - SFMLDIR: ${SFMLDIR})
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
@@ -67,6 +69,11 @@ endif()
 # Install target
 install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
 
+add_custom_command( TARGET ${EXECUTABLE_NAME}
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E echo "Copying data.."
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_HOME_DIRECTORY}/ ${CMAKE_BINARY_DIR}
+    )
 
 # CPack packaging
 include(InstallRequiredSystemLibraries)

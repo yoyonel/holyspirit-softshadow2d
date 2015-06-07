@@ -10,8 +10,8 @@ varying             vec2 v_v_position;
 
 void main()
 {
-    vec2    v_pos_in_ls         = v_v_position - u_v_position_light; // position du vertex edge dans le repère lumière (Light Space)
-    vec2    v_pos_light_in_ls   = vec2(0.f); // origine du repère
+    vec2    v_pos_in_ls         = v_v_position - u_v_position_light; // position du vertex edge dans le repere lumiere (Light Space)
+    vec2    v_pos_light_in_ls   = vec2(0.f); // origine du repere
 
     if (length(v_pos_in_ls) > u_f_influence_radius_light )
         discard;
@@ -19,7 +19,7 @@ void main()
     vec4 result_color = vec4(1);
 
 	//
-	vec4 texel_normal_map   = texture2D(texture_normal_map, vec2(gl_TexCoord[0].x, 1-gl_TexCoord[0].y)); // changement de repère: symétrie selon l'axe x (<=> inverse des y)
+	vec4 texel_normal_map   = texture2D(texture_normal_map, vec2(gl_TexCoord[0].x, 1-gl_TexCoord[0].y)); // changement de repere: symetrie selon l'axe x (<=> inverse des y)
 	vec3 normal             = texel_normal_map*2 - vec4(1); // decodage de la normale: [0, 1] -> [-1, +1]
     //
     float z_light = 50;

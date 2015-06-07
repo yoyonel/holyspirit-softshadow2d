@@ -13,12 +13,12 @@ struct Wall
         pt2=p2;
     }
 
-    // Pt1 et Pt2 sont les deux extrémités du mur
+    // Pt1 et Pt2 sont les deux extremites du mur
     sf::Vector2f pt1;
     sf::Vector2f pt2;
 };
 
-// Wall_Entity est une variable qui permet de représenter dans le programme un mur
+// Wall_Entity est une variable qui permet de representer dans le programme un mur
 struct Wall_Entity
 {
     Wall_Entity (int id)
@@ -34,7 +34,7 @@ struct Wall_Entity
 };
 
 
-// Light_Entity est une variable qui permet de représenter dans le programme une lumière
+// Light_Entity est une variable qui permet de representer dans le programme une lumiere
 struct Light_Entity
 {
     Light_Entity (){m_Dynamic=false,m_ID=0; m_SoftShadow=false; m_NormalMap=false;}
@@ -68,16 +68,16 @@ class Light
     Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color);
     ~Light();
 
-    // Afficher la lumière
+    // Afficher la lumiere
     virtual void Draw(sf::RenderTarget *App);
 
-    // Calculer la lumière
+    // Calculer la lumiere
     virtual void Generate(std::vector <Wall> &m_wall);
 
-    // Ajouter un triangle à la lumière, en effet, les lumières sont composée de triangles
+    // Ajouter un triangle ÃƒÂƒÃ‚  la lumiere, en effet, les lumieres sont composee de triangles
     virtual void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std::vector <Wall> &m_wall);
 
-    // Changer différents attributs de la lumière
+    // Changer differents attributs de la lumiere
     void SetIntensity(float);
     void SetRadius(float);
     void SetQuality(int);
@@ -87,33 +87,33 @@ class Light
     virtual void SetOtherParameter(unsigned, float);
 
 
-    // Retourner différents attributs de la lumière
+    // Retourner differents attributs de la lumiere
     float GetIntensity();
     float GetRadius();
     int GetQuality();
     sf::Color GetColor();
     sf::Vector2f GetPosition();
 
-    // Une petite bool pour savoir si la lumière est allumée ou éteinte
+    // Une petite bool pour savoir si la lumiere est allumee ou eteinte
     bool m_actif;
 
     protected :
-    //Position à l'écran
+    //Position ÃƒÂƒÃ‚  l'ecran
     sf::Vector2f m_position;
-    //Intensité, gère la transparence ( entre 0 et 255 )
+    //Intensite, gere la transparence ( entre 0 et 255 )
     float m_intensity;
-    //Rayon de la lumière
+    //Rayon de la lumiere
     float m_influence_radius;
-    //Couleur de la lumière
+    //Couleur de la lumiere
     sf::Color m_color;
 
 
-    //Tableau dynamique de Shape, ce sont ces shapes de type triangle qui compose la lumière
+    //Tableau dynamique de Shape, ce sont ces shapes de type triangle qui compose la lumiere
     std::vector <sf::Shape> m_shape;
 
     private :
 
-    //Qualité de la lumière, c'est à dire le nombre de triangles par défaut qui la compose.
+    //Qualite de la lumiere, c'est ÃƒÂƒÃ‚  dire le nombre de triangles par defaut qui la compose.
     int m_quality;
 };
 

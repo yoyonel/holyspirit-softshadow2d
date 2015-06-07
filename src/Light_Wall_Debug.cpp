@@ -20,7 +20,7 @@ void Light_Wall::Debug(sf::RenderTarget* App, const vec2& P) const
 
         const vec2 P_LS = P - pos;
 
-        // - E0_LS et E1_LS sont les positions des deux extrémités du mur, relatives au centre de la lumière
+        // - E0_LS et E1_LS sont les positions des deux extremites du mur, relatives au centre de la lumiere
         vec2 E0_LS(vertex_wall[0] - pos);
         vec2 E1_LS(vertex_wall[1] - pos);
 
@@ -157,7 +157,7 @@ void Light_Wall::Debug( sf::RenderTarget* App, sf::Shader &shader_debug, const v
         occlusion_query_begin();
         f_render_disc_portion = 0.f;
         shader_debug.SetParameter("u_f_render_disc_portion", f_render_disc_portion);
-        // On rend la portion de disque ombrée
+        // On rend la portion de disque ombree
         Draw_Analytic_Circle_Light(App, shader_debug);
         const GLuint nb_samples_circle = occlusion_query_end();
         glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
@@ -182,7 +182,7 @@ void Light_Wall::Debug( sf::RenderTarget* App, sf::Shader &shader_debug, const v
                 occlusion_query_begin();
                 f_render_disc_portion = 2.f; // Portion de disque: Proj_I0, Proj_I1
                 shader_debug.SetParameter("u_f_render_disc_portion", f_render_disc_portion);
-                // On rend la portion de disque ombrée:
+                // On rend la portion de disque ombree:
                 Draw_Analytic_Circle_Light(App, shader_debug);
                 const GLuint nb_samples_disc_portion_0 = occlusion_query_end();
 
@@ -190,7 +190,7 @@ void Light_Wall::Debug( sf::RenderTarget* App, sf::Shader &shader_debug, const v
                 occlusion_query_begin();
                 f_render_disc_portion = 3.f; // Portion de disque: I0, Proj_I0
                 shader_debug.SetParameter("u_f_render_disc_portion", f_render_disc_portion);
-                // On rend la portion de disque ombrée
+                // On rend la portion de disque ombree
                 Draw_Analytic_Circle_Light(App, shader_debug);
                 const GLuint nb_samples_disc_portion_1 = occlusion_query_end();
 
@@ -253,7 +253,7 @@ void Light_Wall::Debug( sf::RenderTarget* App, sf::Shader &shader_debug, const v
                 occlusion_query_begin();
                 f_render_disc_portion = 2.f; // Portion de disque: Proj_I0, Proj_I1
                 shader_debug.SetParameter("u_f_render_disc_portion", f_render_disc_portion);
-                // On rend la portion de disque ombrée:
+                // On rend la portion de disque ombree:
                 Draw_Analytic_Circle_Light(App, shader_debug);
                 const GLuint nb_samples_disc_portion_0 = occlusion_query_end();
 
@@ -261,7 +261,7 @@ void Light_Wall::Debug( sf::RenderTarget* App, sf::Shader &shader_debug, const v
                 occlusion_query_begin();
                 f_render_disc_portion = 4.f; // Portion de disque: I1, Proj_I1
                 shader_debug.SetParameter("u_f_render_disc_portion", f_render_disc_portion);
-                // On rend la portion de d  isque ombrée
+                // On rend la portion de d  isque ombree
                 Draw_Analytic_Circle_Light(App, shader_debug);
                 const GLuint nb_samples_disc_portion_2 = occlusion_query_end();
 
@@ -323,7 +323,7 @@ void Light_Wall::Debug( sf::RenderTarget* App, sf::Shader &shader_debug, const v
                 occlusion_query_begin();
                 f_render_disc_portion = 2.f; // Portion de disque: Proj_I0, Proj_I1
                 shader_debug.SetParameter("u_f_render_disc_portion", f_render_disc_portion);
-                // On rend la portion de disque ombrée:
+                // On rend la portion de disque ombree:
                 Draw_Analytic_Circle_Light(App, shader_debug);
                 const GLuint nb_samples_disc_portion_0 = occlusion_query_end();
 
@@ -331,7 +331,7 @@ void Light_Wall::Debug( sf::RenderTarget* App, sf::Shader &shader_debug, const v
                 occlusion_query_begin();
                 f_render_disc_portion = 3.f; // Portion de disque: I0, Proj_I0
                 shader_debug.SetParameter("u_f_render_disc_portion", f_render_disc_portion);
-                // On rend la portion de disque ombrée
+                // On rend la portion de disque ombree
                 Draw_Analytic_Circle_Light(App, shader_debug);
                 const GLuint nb_samples_disc_portion_1 = occlusion_query_end();
 
@@ -339,7 +339,7 @@ void Light_Wall::Debug( sf::RenderTarget* App, sf::Shader &shader_debug, const v
                 occlusion_query_begin();
                 f_render_disc_portion = 4.f; // Portion de disque: I1, Proj_I1
                 shader_debug.SetParameter("u_f_render_disc_portion", f_render_disc_portion);
-                // On rend la portion de disque ombrée
+                // On rend la portion de disque ombree
                 Draw_Analytic_Circle_Light(App, shader_debug);
                 const GLuint nb_samples_disc_portion_2 = occlusion_query_end();
 
@@ -396,7 +396,7 @@ void Light_Wall::Debug( sf::RenderTarget* App, sf::Shader &shader_debug, const v
                 f_render_disc_portion = 1.f;
                 occlusion_query_begin();
                 shader_debug.SetParameter("u_f_render_disc_portion", f_render_disc_portion);
-                // On rend la portion de disque ombrée
+                // On rend la portion de disque ombree
                 Draw_Analytic_Circle_Light(App, shader_debug);
                 const GLuint nb_samples_disc_portion = occlusion_query_end();
 
@@ -463,7 +463,7 @@ vec2 compute_projection_on_circle( const vec2& E, const vec2& P, const float r, 
     vec2 pos_light= vec2(0.f, 0.f);
 
     f_signed_distance = signed_distance_point_line( pos_light, P, E );
-    // [TODO]: à simplifier !
+    // [TODO]: ÃƒÂƒÃ‚  simplifier !
     d = f_signed_distance*inv_r;
     a = acos(d);
     y = NORMALIZE(E-P);
@@ -475,15 +475,15 @@ vec2 compute_projection_on_circle( const vec2& E, const vec2& P, const float r, 
 
 bool inside_half_plane(const vec2& A, const vec2& B, const vec2& P)
 {
-    // Du bon coté du demi-plan dont l'edge est la frontière (ou sa droite) et orienté pour ne pas contenir la source de lumière
-    // equation paramétrique d'une droite: (1) a.x + b.y + c = 0, avec (a,b) normale de la droite
+    // Du bon cote du demi-plan dont l'edge est la frontiere (ou sa droite) et oriente pour ne pas contenir la source de lumiere
+    // equation parametrique d'une droite: (1) a.x + b.y + c = 0, avec (a,b) normale de la droite
     vec2 v_dir      = B - A;
     vec2 v2_normal   = NORMAL(v_dir);
     // on calcul c => c = -(a*x + b*y), on prend (x, y) = A (1 point de la droite)
     float c = - DOT(v2_normal, A);
-    // dans quel sens la normale est orientée pour relier le point P et la droite ?
+    // dans quel sens la normale est orientee pour relier le point P et la droite ?
     float side_of_P = DOT(P, v2_normal) + c;
-    // selon le sens (qui indique le sens de la normale), on détermine si le point est dans le demi-plan
+    // selon le sens (qui indique le sens de la normale), on determine si le point est dans le demi-plan
     return (side_of_P*SIGN(c)<0.);
 }
 
@@ -499,7 +499,7 @@ float compute_disc_portion_area( const vec2& P0, const vec2& P1, const float r )
 
     alpha = acosf(d/r); // angle
     aire_secteur_angulaire = alpha*r*r;
-    aire_triangle_isocele = d*sqrtf(r*r - d*d); // se décomposé en deux triangles rectangles dont le rayon du cercle sont les hypothénuses
+    aire_triangle_isocele = d*sqrtf(r*r - d*d); // se decompose en deux triangles rectangles dont le rayon du cercle sont les hypothenuses
 
     // aire de la portion de disque
     A = alpha*r*r - d*sqrtf(r*r - d*d);
@@ -507,10 +507,10 @@ float compute_disc_portion_area( const vec2& P0, const vec2& P1, const float r )
     return A;
 }
 
-// calcul la visibilité de la lumière
+// calcul la visibilite de la lumiere
 // pour un point P
-// occulté par un segment défini
-// par deux points E0 et E1 en dehors ou sur le disque de lumière
+// occulte par un segment defini
+// par deux points E0 et E1 en dehors ou sur le disque de lumiere
 float compute_visibility_light(const vec2& P, const vec2& E0, const vec2& E1, const float r)
 {
     float visibilty = 1.;
@@ -533,7 +533,7 @@ float compute_visibility_light(const vec2& P, const vec2& E0, const vec2& E1, co
     vec2 n_P_E1 = NORMAL(P_E1);
     // Orientation du volume d'ombre
     A0 = DOT(n_P_E0, +1.f*Edge) > 0.f ? (1.f-A0) : A0;
-    // A t'on calculé l'aire de visibilité ou d'occultation ?
+    // A t'on calcule l'aire de visibilite ou d'occultation ?
     A1 = DOT(n_P_E1, -1.f*Edge) > 0.f ? (1.f-A1) : A1;
     // Sens de projection de l'ombre
     A0 = float(DOT(P_E0, E0) < 0.f) * A0;
@@ -839,7 +839,7 @@ float   compute_visibility_light_out_out(const vec2& P, const vec2& E0, const ve
 {
     float shadow_light = 0;
 
-    // Décomposition du segment d'occultation
+    // Decomposition du segment d'occultation
     shadow_light += 1 - compute_visibility_light_out_on( P, E0, I0, r, _pos_light, _vector_shapes_debug, _vector_text_debug );
     shadow_light += 1 - compute_visibility_light_out_on( P, E1, I1, r, _pos_light, _vector_shapes_debug, _vector_text_debug );
     shadow_light += 1 - compute_visibility_light_on_on(  P, I0, I1, r, _pos_light, _vector_shapes_debug, _vector_text_debug );

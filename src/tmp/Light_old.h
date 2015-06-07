@@ -13,12 +13,12 @@ struct Wall
         pt2=p2;
     }
 
-    // Pt1 et Pt2 sont les deux extr�mit�s du mur
+    // Pt1 et Pt2 sont les deux extrÃÂ©mitÃÂ©s du mur
     sf::Vector2f pt1;
     sf::Vector2f pt2;
 };
 
-// Wall_Entity est une variable qui permet de repr�senter dans le programme un mur
+// Wall_Entity est une variable qui permet de reprÃÂ©senter dans le programme un mur
 struct Wall_Entity
 {
     Wall_Entity (int id)
@@ -34,7 +34,7 @@ struct Wall_Entity
 };
 
 
-// Light_Entity est une variable qui permet de repr�senter dans le programme une lumi�re
+// Light_Entity est une variable qui permet de reprÃÂ©senter dans le programme une lumiÃÂ¨re
 struct Light_Entity
 {
     Light_Entity (){m_Dynamic=false,m_ID=0;}
@@ -62,16 +62,16 @@ class Light
     Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color);
     ~Light();
 
-    // Afficher la lumi�re
+    // Afficher la lumiÃÂ¨re
     void Draw(sf::RenderTarget *App);
 
-    // Calculer la lumi�re
+    // Calculer la lumiÃÂ¨re
     virtual void Generate(std::vector <Wall> &m_wall);
 
-    // Ajouter un triangle � la lumi�re, en effet, les lumi�res sont compos�e de triangles
+    // Ajouter un triangle ÃÂ  la lumiÃÂ¨re, en effet, les lumiÃÂ¨res sont composÃÂ©e de triangles
     void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std::vector <Wall> &m_wall);
 
-    // Changer diff�rents attributs de la lumi�re
+    // Changer diffÃÂ©rents attributs de la lumiÃÂ¨re
     void SetIntensity(float);
     void SetRadius(float);
     void SetQuality(int);
@@ -81,33 +81,33 @@ class Light
     virtual void SetOtherParameter(unsigned, float);
 
 
-    // Retourner diff�rents attributs de la lumi�re
+    // Retourner diffÃÂ©rents attributs de la lumiÃÂ¨re
     float GetIntensity();
     float GetRadius();
     int GetQuality();
     sf::Color GetColor();
     sf::Vector2f GetPosition();
 
-    // Une petite bool pour savoir si la lumi�re est allum�e ou �teinte
+    // Une petite bool pour savoir si la lumiÃÂ¨re est allumÃÂ©e ou ÃÂ©teinte
     bool m_actif;
 
     protected :
-    //Position � l'�cran
+    //Position ÃÂ  l'ÃÂ©cran
     sf::Vector2f m_position;
-    //Intensit�, g�re la transparence ( entre 0 et 255 )
+    //IntensitÃÂ©, gÃÂ¨re la transparence ( entre 0 et 255 )
     float m_intensity;
-    //Rayon de la lumi�re
+    //Rayon de la lumiÃÂ¨re
     float m_influence_radius;
-    //Couleur de la lumi�re
+    //Couleur de la lumiÃÂ¨re
     sf::Color m_color;
 
 
-    //Tableau dynamique de Shape, ce sont ces shapes de type triangle qui compose la lumi�re
+    //Tableau dynamique de Shape, ce sont ces shapes de type triangle qui compose la lumiÃÂ¨re
     std::vector <sf::Shape> m_shape;
 
     private :
 
-    //Qualit� de la lumi�re, c'est � dire le nombre de triangles par d�faut qui la compose.
+    //QualitÃÂ© de la lumiÃÂ¨re, c'est ÃÂ  dire le nombre de triangles par dÃÂ©faut qui la compose.
     int m_quality;
 };
 

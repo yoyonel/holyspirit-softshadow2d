@@ -13,12 +13,12 @@ class Light_SV : public Light
 
         virtual ~Light_SV();
 
-        // Afficher la lumière
+        // Afficher la lumiere
         void Draw(sf::RenderTarget *App);
 
         void Generate(std::vector <Wall> &m_wall);
 
-        // Ajouter un triangle à la lumière, en effet, les lumières sont composée de triangles
+        // Ajouter un triangle ÃƒÂƒÃ‚  la lumiere, en effet, les lumieres sont composee de triangles
         void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2);
 
         inline float    GetInnerRadius() const          { return m_inner_radius; };
@@ -50,7 +50,7 @@ class Light_SV : public Light
     private:
         std::vector <Light_Wall> m_lights_walls;
 
-        // Rayon de la "sphère"
+        // Rayon de la "sphere"
         float m_inner_radius;
 
         bool m_b_is_construct;

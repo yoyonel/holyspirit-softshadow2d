@@ -38,7 +38,7 @@ sf::Color ambient_light = sf::Color(ambient, ambient, ambient, 255);
 
 int main()
 {
-    // Création de la fenêtre de rendu.
+    // Creation de la fenÃƒÂƒÃ‚Âªtre de rendu.
     sf::ContextSettings Settings;
 
     sf::RenderWindow App(sf::VideoMode(i_screen_width, i_screen_height, 32), "Holyspirit Light Test - Dynamic Light Shadow Volume 2D"); // Ecran 16/9, resolution HD 720p
@@ -49,14 +49,14 @@ int main()
         exit(1);
     }
 
-    // Création de l'horloge pour gérer le temps.
+    // Creation de l'horloge pour gerer le temps.
     sf::Clock Clock;
 
-    // Création d'un tableau dynamique qui contient les images des murs.
+    // Creation d'un tableau dynamique qui contient les images des murs.
     std::vector <sf::Shape> Wall;
 
 
-    // Création du Light_Manager, c'est lui qui va s'occupper de gérer les lumières.
+    // Creation du Light_Manager, c'est lui qui va s'occupper de gerer les lumieres.
     Light_Manager *Manager;
     Manager=Light_Manager::GetInstance();
 
@@ -77,7 +77,7 @@ int main()
     Wall.push_back(sf::Shape::Line(625, 285, 600, 300, 5, sf::Color(255,255,255, 255)));
 
     // On ajoute des murs au Light_Manager,
-    // ce sont ces murs qui sont pris en compte lors du calcul des lumières
+    // ce sont ces murs qui sont pris en compte lors du calcul des lumieres
     // (Position du point 1, Position du point 2).
     //
     Manager->Add_Wall(sf::Vector2f(500,200),sf::Vector2f(600,300));
@@ -103,7 +103,7 @@ int main()
         Manager->Add_Wall(sf::Vector2f(450, 250), sf::Vector2f(450, 350));
         //
 
-        // On ajoute des lignes à "Wall" pour représenter les murs de facon graphique.
+        // On ajoute des lignes ÃƒÂƒÃ‚  "Wall" pour representer les murs de facon graphique.
         Wall.push_back(sf::Shape::Line(450, 325, 300, 200, 5, sf::Color(255,255,255)));
         Wall.push_back(sf::Shape::Line(250, 240, 400, 365, 5, sf::Color(255,255,255)));
         Wall.push_back(sf::Shape::Line(125, 125, 100, 100, 5, sf::Color(255,255,255)));
@@ -122,16 +122,16 @@ int main()
         Wall.push_back(sf::Shape::Line(pt1.x, pt1.y, pt2.x, pt2.y, 5, sf::Color(255,255,255)));
         Manager->Add_Wall(pt1, pt2);
     }
-    // Création des Light_Entity, ce sont elles qui permettent de modifier les lumières par après, comme changer de position, de couleur, etc
+    // Creation des Light_Entity, ce sont elles qui permettent de modifier les lumieres par apres, comme changer de position, de couleur, etc
     Light_Entity light,light2,light3,directional_light;
 
-    // On ajoute une lumière dynamique au Light_Manager et on dit que c'est "light" qui la représente.
+    // On ajoute une lumiere dynamique au Light_Manager et on dit que c'est "light" qui la represente.
     #ifdef __USE_LIGHT__
         #ifndef __USE_1_LIGHT__
             light=Manager->Add_Dynamic_Light();
             light2=Manager->Add_Dynamic_Light();
         #endif
-        // On ajoute une lumière dynamique à la position (600,600), d'intensité 255, de rayon 160, de qualité 16 et de couleur verte.
+        // On ajoute une lumiere dynamique ÃƒÂƒÃ‚  la position (600,600), d'intensite 255, de rayon 160, de qualite 16 et de couleur verte.
         light3=Manager->Add_Dynamic_Light(sf::Vector2f(600,200),255,SIZE_LIGHT_TYPE0,QUALITY_LIGHT,sf::Color(0,255,0));
     #endif
 
@@ -139,17 +139,17 @@ int main()
         #ifndef __USE_1_LIGHT__
             light=Manager->Add_Dynamic_Light_SV();
             light2=Manager->Add_Dynamic_Light_SV();
-            // On donne la position (375,275) à la lumière raccordée à "light".
+            // On donne la position (375,275) ÃƒÂƒÃ‚  la lumiere raccordee ÃƒÂƒÃ‚  "light".
             Manager->SetPosition(light,sf::Vector2f(375,275));
-            // On donne une intensité de 255 à la lumière raccordée à "light".
+            // On donne une intensite de 255 ÃƒÂƒÃ‚  la lumiere raccordee ÃƒÂƒÃ‚  "light".
             Manager->SetIntensity(light,255);
-            // On donne un rayon de 128 à la lumière raccordée à "light".
+            // On donne un rayon de 128 ÃƒÂƒÃ‚  la lumiere raccordee ÃƒÂƒÃ‚  "light".
             Manager->SetRadius(light,SIZE_LIGHT_TYPE1);
-            // On donne une qualité de 16 à la lumière raccordée à "light".
+            // On donne une qualite de 16 ÃƒÂƒÃ‚  la lumiere raccordee ÃƒÂƒÃ‚  "light".
             Manager->SetQuality(light,QUALITY_LIGHT);
-            // On donne une couleur rouge à la lumière raccordée à "light".
+            // On donne une couleur rouge ÃƒÂƒÃ‚  la lumiere raccordee ÃƒÂƒÃ‚  "light".
             Manager->SetColor(light,sf::Color(255,0,0));
-            // Même chose que juste au dessus, mais avec "light2"
+            // MÃƒÂƒÃ‚Âªme chose que juste au dessus, mais avec "light2"
             Manager->SetPosition(light2,sf::Vector2f(175,50));
             Manager->SetIntensity(light2,255);
             Manager->SetRadius(light2,SIZE_LIGHT_TYPE1);
@@ -159,7 +159,7 @@ int main()
             Manager->SetEffects_For_Light_SV(light);
             Manager->SetEffects_For_Light_SV(light2);
         #endif
-        // On ajoute une lumière dynamique à la position (600,600), d'intensité 255, de rayon 160, de qualité 16 et de couleur verte.
+        // On ajoute une lumiere dynamique ÃƒÂƒÃ‚  la position (600,600), d'intensite 255, de rayon 160, de qualite 16 et de couleur verte.
         light3=Manager->Add_Dynamic_Light_SV(sf::Vector2f(600,200), 255, SIZE_LIGHT_TYPE0, QUALITY_LIGHT, sf::Color(32,128,196));
 //        light3=Manager->Add_Dynamic_Light_SV( sf::Vector2f(600,200), 255, SIZE_LIGHT_TYPE0, QUALITY_LIGHT, sf::Color(255, 255, 255));
         //
@@ -168,8 +168,8 @@ int main()
 
     #ifndef __USE_LIGHT_SV__
         #ifndef __USE_1_LIGHT__
-            // On ajoute une lumière statique à la position (110,490), d'intensité 160, de rayon 96, de qualité 8 et de couleur blanche.
-            // On ne la raccorde pas à une Light_Entity car c'est une lumière statique et qui n'est donc pas modifiable.
+            // On ajoute une lumiere statique ÃƒÂƒÃ‚  la position (110,490), d'intensite 160, de rayon 96, de qualite 8 et de couleur blanche.
+            // On ne la raccorde pas ÃƒÂƒÃ‚  une Light_Entity car c'est une lumiere statique et qui n'est donc pas modifiable.
             Manager->Add_Static_Light(sf::Vector2f(110,490),160,96,8,sf::Color(255,255,255));
             //
             directional_light = Manager->Add_Dynamic_Directional_Light(sf::Vector2f(750,310),255,384,90,45,sf::Color(255,128,255));
@@ -177,7 +177,7 @@ int main()
     #endif
 
     #ifdef __USE_BACKGROUND__
-        // Création d'une image qui servira d'image de fond, on charge donc l'image "test.png".
+        // Creation d'une image qui servira d'image de fond, on charge donc l'image "test.png".
         sf::Image Image;
         //Image.LoadFromFile("data/textures/test.png");
 //        Image.LoadFromFile("data/textures/rock.png");
@@ -190,31 +190,31 @@ int main()
         background.Resize(i_screen_width,i_screen_height);
     #endif
 
-    // Création d'une sf::String pour afficher les FPS
+    // Creation d'une sf::String pour afficher les FPS
     sf::Text FPS;
-    // Création d'un buffer pour préparer le texte des FPS
+    // Creation d'un buffer pour preparer le texte des FPS
     char buffer[255];
 
-    // Création de variables pour la gestion du temps.
+    // Creation de variables pour la gestion du temps.
     float AfficherFPS=0,LightRefresh=0;
 
-    //Création de bool pour faire rebondir les lumières
+    //Creation de bool pour faire rebondir les lumieres
     bool allerX=true,allerY=true;
     bool allerX2=true,allerY2=true;
 
     float angle = 90;
 
-    // Exécution de la boucle principale
+    // Execution de la boucle principale
     while (App.IsOpened())
     {
-        // Traitement des évènements
+        // Traitement des evenements
         sf::Event Event;
         while (App.GetEvent(Event))
         {
             // Escape key : exit
             if ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::Escape))
                 App.Close();
-            // Fenêtre fermée : on quitte
+            // FenÃƒÂƒÃ‚Âªtre fermee : on quitte
             if (Event.Type == sf::Event::Closed)
                 App.Close();
             // Resize event : adjust viewport
@@ -223,14 +223,14 @@ int main()
             }
         }
 
-        // On ajoute le temps écoulé
+        // On ajoute le temps ecoule
         AfficherFPS+=Clock.GetElapsedTime();
         LightRefresh+=Clock.GetElapsedTime();
 
         angle += Clock.GetElapsedTime() * 20;
 
 
-        //On déplace la "light" en fonction du temps, avec allerX et allerY pour savoir si on monte ou on descend.
+        //On deplace la "light" en fonction du temps, avec allerX et allerY pour savoir si on monte ou on descend.
         if(allerX)
             Manager->SetPosition(light,sf::Vector2f(Manager->GetPosition(light).x+100*Clock.GetElapsedTime(),Manager->GetPosition(light).y));
         else
@@ -252,7 +252,7 @@ int main()
         if(Manager->GetPosition(light).y<0)
             allerY=true;
 
-        // Ce ne sert que pour la démo technique et n'intervient pas dans l'utilisation du moteur de lumières
+        // Ce ne sert que pour la demo technique et n'intervient pas dans l'utilisation du moteur de lumieres
 
 
         // Idem mais avec light2
@@ -277,33 +277,33 @@ int main()
             allerY2=true;
 
 
-        // On récupère la position de la souris (coordonnées window)
+        // On recupere la position de la souris (coordonnees window)
         const sf::Input& Input  = App.GetInput();
         sf::Vector2f pos_mouse_in_window(Input.GetMouseX(), Input.GetMouseY());
         pos_mouse_in_window.y   = App.GetHeight()-pos_mouse_in_window.y;
-        // [-1, +1]² => [0, with-1]x[0, height-1]
+        // [-1, +1]ÃƒÂ‚Ã‚Â² => [0, with-1]x[0, height-1]
         sf::Matrix3 mat_window  = sf::Matrix3::Transformation(sf::Vector2f(-1, -1), sf::Vector2f(0, 0), 0, sf::Vector2f(App.GetWidth()/2, App.GetHeight()/2));
         const sf::Matrix3 mat_inv_window            = mat_window.GetInverse(); // [0, with_window-1]x[0, height_window-1] -> [-1, +1]x[-1, +1]
         const sf::Matrix3 mat_view                  =  App.GetView().GetMatrix();    // [0, with_viewport]x[0, height_viewport] -> [-1, +1]x[-1, +1]
         const sf::Matrix3 mat_inv_view              =  mat_view.GetInverse();    // [-1, +1]x[-1, +1] -> [0, with_viewport]x[0, height_viewport]
         const sf::Matrix3 mat_window_to_viewport    =  mat_inv_view*mat_inv_window; // [0, with_window-1]x[0, height_window-1] -> [0, with_viewport]x[0, height_viewport]
         sf::Vector2f pos_mouse_in_viewport          = mat_window_to_viewport.Transform(pos_mouse_in_window);
-        // On place light 3 à cette position
+        // On place light 3 ÃƒÂƒÃ‚  cette position
         Manager->SetPosition(light3, pos_mouse_in_viewport);
 
         Manager->SetOtherParameter(directional_light,ANGLE,angle);
 
         Clock.Reset();
 
-        //Vous pouvez changer le 0.025 (=25ms=40hz) par une autre valeur si vous voulez que les lumières ne se rafraichissent que toutes les x secondes, au lieu de le faire à chaque tour de boucle.
+        //Vous pouvez changer le 0.025 (=25ms=40hz) par une autre valeur si vous voulez que les lumieres ne se rafraichissent que toutes les x secondes, au lieu de le faire ÃƒÂƒÃ‚  chaque tour de boucle.
         if(LightRefresh>0.025)
         {
-            // On re-calcule les lumières
+            // On re-calcule les lumieres
             Manager->Generate();
             LightRefresh=0;
         }
 
-        // Efface l'écran (remplissage avec du noir)
+        // Efface l'ecran (remplissage avec du noir)
         App.Clear( sf::Color(255, 255, 255, 255) );
 
         #ifdef __USE_BACKGROUND__
@@ -320,7 +320,7 @@ int main()
             }
         #endif
 
-        // On affiche les lumières
+        // On affiche les lumieres
         Manager->Draw(&App);
 
         // On affiche les FPS
@@ -333,7 +333,7 @@ int main()
         }
         App.Draw(FPS);
 
-        // Affichage du contenu de la fenêtre à l'écran
+        // Affichage du contenu de la fenÃƒÂƒÃ‚Âªtre ÃƒÂƒÃ‚  l'ecran
         App.Display();
     }
 

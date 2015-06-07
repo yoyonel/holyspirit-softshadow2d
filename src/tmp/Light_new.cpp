@@ -94,7 +94,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
     // On boucle sur tous les murs
     for(std::vector<Wall>::iterator IterWall=m_wall.begin()+minimum_wall;IterWall!=m_wall.end();++IterWall,++w)
     {
-        // l1 et l2 sont les positions relatives au centre de la lumi�re des deux extr�mit�s du mur
+        // l1 et l2 sont les positions relatives au centre de la lumiÃÂ¨re des deux extrÃÂ©mitÃÂ©s du mur
         sf::Vector2f l1(IterWall->pt1.x-m_position.x, IterWall->pt1.y-m_position.y);
         sf::Vector2f l2(IterWall->pt2.x-m_position.x, IterWall->pt2.y-m_position.y);
 
@@ -135,18 +135,18 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
         }
     }
 
-    // Variable qui contiendra l'intensit� calcul�e, pour le d�grad�
+    // Variable qui contiendra l'intensitÃÂ© calculÃÂ©e, pour le dÃÂ©gradÃÂ©
     float intensity;
 
     // On ajoute un shape
     m_shape.push_back(sf::Shape ());
 
-    // On lui donne comme point de d�part (0,0), le centre de la lumi�re, avec la couleur et intensit� maximal
+    // On lui donne comme point de dÃÂ©part (0,0), le centre de la lumiÃÂ¨re, avec la couleur et intensitÃÂ© maximal
     m_shape.back().AddPoint(0, 0,  sf::Color((int)(m_intensity*m_color.r/255),
                                              (int)(m_intensity*m_color.g/255),
                                              (int)(m_intensity*m_color.b/255)),sf::Color(255,255,255));
 
-    // On calcul ou l'on se trouve par rapport au centre, pour savoir � quel intensit� on est
+    // On calcul ou l'on se trouve par rapport au centre, pour savoir ÃÂ  quel intensitÃÂ© on est
     intensity=m_intensity-sqrt(pt1.x*pt1.x + pt1.y*pt1.y)*m_intensity/m_influence_radius;
     // Et on ajoute un  point au shape
     m_shape.back().AddPoint(pt1.x, pt1.y,  sf::Color((int)(intensity*m_color.r/255),
@@ -166,13 +166,13 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
 
 void Light::Generate(std::vector <Wall> &m_wall)
 {
-    // On vide la m�moire
+    // On vide la mÃÂ©moire
     m_shape.clear();
 
-    // buf est l'angle de chaque triangle, c'est donc 2pi divis� par le nombre de triangles
+    // buf est l'angle de chaque triangle, c'est donc 2pi divisÃÂ© par le nombre de triangles
     float buf=(M_PI*2)/(float)m_quality;
 
-    // On ajoute tous les triangles qui composent la lumi�re
+    // On ajoute tous les triangles qui composent la lumiÃÂ¨re
     for(int i=0;i<m_quality;i++)
     {
         AddTriangle(sf::Vector2f((float)((float)m_influence_radius*cos((float)i*buf))
@@ -183,7 +183,7 @@ void Light::Generate(std::vector <Wall> &m_wall)
 }
 
 
-// Diff�rentes fonctions pour modifier les attributs de la lumi�re, et pour les r�cup�rer
+// DiffÃÂ©rentes fonctions pour modifier les attributs de la lumiÃÂ¨re, et pour les rÃÂ©cupÃÂ©rer
 
 void Light::SetIntensity(float intensity) { m_intensity=intensity; }
 void Light::SetRadius(float radius) { m_influence_radius=radius; }

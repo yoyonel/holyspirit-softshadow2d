@@ -61,7 +61,7 @@ Light_SV::~Light_SV()
 
 void Light_SV::clear()
 {
-    // On vide la mémoire
+    // On vide la memoire
     m_lights_walls.clear();
 }
 
@@ -81,7 +81,7 @@ void Light_SV::InitEffects()
     SoftShadowEffect_WIL.LoadFromFile("data/shaders/vertex_ss_2d.glsl", "data/shaders/pixel_ss_2d_wil.glsl");
     SoftShadowEffect_Debug.LoadFromFile("data/shaders/vertex_ss_2d.glsl", "data/shaders/pixel_ss_2d_debug.glsl");
 
-    // On récupère les shaders chargés par le Light_Manager
+    // On recupere les shaders charges par le Light_Manager
     const Light_Manager *Manager = Light_Manager::GetInstance();
     //
     SphereLighting2D                = Manager->GetDiscLightingEffect();
@@ -127,7 +127,7 @@ void Light_SV::Draw(sf::RenderTarget *App)
 
 }
 
-// N'utilise pas un système de shape englobante (pour le shadow volume, et les penumbra volumes)
+// N'utilise pas un systeme de shape englobante (pour le shadow volume, et les penumbra volumes)
 void Light_SV::Draw_Full_Light(sf::RenderTarget *App)
 {
     if (m_b_init_effects)
@@ -142,7 +142,7 @@ void Light_SV::Draw_Full_Light(sf::RenderTarget *App)
         glDisable(GL_ALPHA_TEST);    // desactivation du test alpha
         //
         glDisable(GL_DEPTH_TEST);   // desactivation du depth test (L.I.F.O.)
-        glDepthMask(GL_FALSE);      // on écrit pas dans le depthbuffer
+        glDepthMask(GL_FALSE);      // on ecrit pas dans le depthbuffer
         //
         glEnable(GL_STENCIL_TEST);  // activation du depth buffer
         glStencilMask(mask_stencil);// mise en place du mask (activation de tous les bits)
@@ -168,12 +168,12 @@ void Light_SV::Draw_Full_Light(sf::RenderTarget *App)
                 {
                     switch(IterBV->Type())
                     {
-                        // Si pas d'intersection entre le segment-mur et le cercle de lumière
+                        // Si pas d'intersection entre le segment-mur et le cercle de lumiere
                         case SHADOW_VOLUME:
                         case OUTER_PENUMBRA:
                         case INNER_PENUMBRA:
                         {
-                            // On utilise le stencil pour ne pas écrire calculer l'ombre deux fois au même endroit
+                            // On utilise le stencil pour ne pas ecrire calculer l'ombre deux fois au mÃƒÂƒÃ‚Âªme endroit
                             glStencilFunc( GL_EQUAL, ref_stencil, mask_stencil);
                             glStencilOp( GL_INCR, GL_INCR, GL_INCR);
                             glStencilMask( mask_stencil);
@@ -184,7 +184,7 @@ void Light_SV::Draw_Full_Light(sf::RenderTarget *App)
                         // Si intersection
                         case PENUMBRAS_WIL:
                         {
-                            // On désactive le stencil (il peut avoir recouvrement (volontaire) des zones de pénombres)
+                            // On desactive le stencil (il peut avoir recouvrement (volontaire) des zones de penombres)
                             glStencilFunc( GL_ALWAYS, ref_stencil, mask_stencil);
                             glStencilOp( GL_KEEP, GL_KEEP, GL_KEEP);
                             glStencilMask( ~mask_stencil);
@@ -212,7 +212,7 @@ void Light_SV::Draw_Full_Light(sf::RenderTarget *App)
                     shader.SetParameter("u_f_radius_light",           m_inner_radius);
                     shader.SetParameter("u_f_influence_radius_light", m_influence_radius);
 
-                    // On rend le volume d'ombre en mode additif (les ombres se cumulent pour un couple lumière-occluder)
+                    // On rend le volume d'ombre en mode additif (les ombres se cumulent pour un couple lumiere-occluder)
                     sf::Shape shape_shadow = IterBV->Shape();
                     shape_shadow.SetBlendMode(sf::Blend::Add);
                     m_renderLightBufferImg->Draw(shape_shadow, shader);
@@ -248,8 +248,8 @@ void Light_SV::Draw_Full_Light(sf::RenderTarget *App)
 
         App->Draw(sprite, CombineEffect2);
 
-        // MOG: bug avec SFML, problème avec la surface de rendu App si je ne remet pas son shader à NULL
-        // Cette remise à NULL est effectuée si on active le debug
+        // MOG: bug avec SFML, probleme avec la surface de rendu App si je ne remet pas son shader ÃƒÂƒÃ‚  NULL
+        // Cette remise ÃƒÂƒÃ‚  NULL est effectuee si on active le debug
         // ou juste en dessinant une shape vide
         // ... bizarre quand meme :/
         Draw_Debug(App);
@@ -257,7 +257,7 @@ void Light_SV::Draw_Full_Light(sf::RenderTarget *App)
     }
 }
 
-// Echantillonage de la source de lumière (par un ensemble de source de lumière ponctuelle)
+// Echantillonage de la source de lumiere (par un ensemble de source de lumiere ponctuelle)
 void Light_SV::Draw_GroundTruth(sf::RenderTarget *App)
 {
     if (m_b_init_effects && m_renderLightBufferImg)
@@ -368,11 +368,11 @@ void Light_SV::Generate_Ground_Truth( std::vector<Wall> &m_wall )
 {
     // Boucler sur tous les pixels de m_renderLightBufferImg
     // pour chaque pixel
-    //  envoyer des rayons en direction d'un échantillonage (aléatoire) de la source de lumière
+    //  envoyer des rayons en direction d'un echantillonage (aleatoire) de la source de lumiere
     //  pour chaque rayon
-    //      l'intersecter par l'ensemble des murs de la scène
-    //      faire la moyenne des rayons non intersectés
-    //      calculer le coefficient de visibilité et écrire le résultat
+    //      l'intersecter par l'ensemble des murs de la scene
+    //      faire la moyenne des rayons non intersectes
+    //      calculer le coefficient de visibilite et ecrire le resultat
     if (m_renderLightBufferImg)
     {
         m_img_light_buffer = m_renderLightBufferImg->GetImage();
@@ -385,14 +385,14 @@ void Light_SV::Generate_Ground_Truth( std::vector<Wall> &m_wall )
                 // pour chaque pixel
                 vec2            v2_pos_receiver(x, y);
                 unsigned int    nb_ray_not_intersect = 0;
-                //  envoyer des rayons en direction de la source de lumière aux murs de la scène
+                //  envoyer des rayons en direction de la source de lumiere aux murs de la scene
                 for(unsigned int i=0; i<NB_SAMPLES_FOR_GROUNDTRUTH; ++i)
                 {
                     vec2 offset;
                     float rand_number = (float)(rand())/(float)(RAND_MAX);
                     // SIMULATE BILLBOARD LIGHT
                     #ifdef __GROUND_TRUTH_RANDOM_SAMPLING__
-                    // stratégie d'échantillonnage: RANDOM (=> bruit)
+                    // strategie d'echantillonnage: RANDOM (=> bruit)
                     {
                         //
                         vec2 rand_vec   = (2.f*rand_number-1.f)*vec2(1, 1);
@@ -402,7 +402,7 @@ void Light_SV::Generate_Ground_Truth( std::vector<Wall> &m_wall )
                     }
                     #endif
                     #ifdef __GROUND_TRUTH_STRATIFIED_SAMPLING__
-                    // stratégie d'échantillonnage: STRATIFIED (+ random => bruit)
+                    // strategie d'echantillonnage: STRATIFIED (+ random => bruit)
                     {
                         float rand_stratified_number = CLAMP((((i/(float)(NB_SAMPLES_FOR_GROUNDTRUTH))*2.f - 1.f) - (rand_number*2.f - 1.f)/(float)(NB_SAMPLES_FOR_GROUNDTRUTH)), -1.f, +1.f);
                         //
@@ -414,7 +414,7 @@ void Light_SV::Generate_Ground_Truth( std::vector<Wall> &m_wall )
                     #endif
 
                     vec2 v2_pos_light = m_position + offset;
-                    // l'intersecter par l'ensemble des murs de la scène
+                    // l'intersecter par l'ensemble des murs de la scene
                     bool b_not_intersect = true;
                     std::vector<Wall>::iterator IterWall=m_wall.begin();
                     while( b_not_intersect && IterWall!=m_wall.end())
@@ -425,10 +425,10 @@ void Light_SV::Generate_Ground_Truth( std::vector<Wall> &m_wall )
                     }
                     nb_ray_not_intersect += b_not_intersect;
                 }
-                // faire la moyenne des rayons non intersectés
-                // calculer le coefficient de visibilité
+                // faire la moyenne des rayons non intersectes
+                // calculer le coefficient de visibilite
                 float coef_shadow = 1 - ((float)(nb_ray_not_intersect)/(float)(NB_SAMPLES_FOR_GROUNDTRUTH));
-                // on écrit le résultat [MOG]
+                // on ecrit le resultat [MOG]
                 coef_shadow *= 255;
                 sf::Color color(coef_shadow, coef_shadow, coef_shadow);
                 m_img_light_buffer.SetPixel(x, y, color);
