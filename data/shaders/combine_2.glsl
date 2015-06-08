@@ -113,16 +113,18 @@ void main()
     #endif
 
     #ifdef USE_SCATTEROING
-	vec3 cameraPos = vec3(640, 360, 1.0);
+	vec3 cameraPos = vec3(640, 360, 50.0);
 	vec3 surfacePos = vec3(v_v_position, 0.0);
 	vec3 dir = surfacePos - cameraPos;
 	float l = length(dir);
 	dir /= l;
-	vec3 lightPos = vec3(u_v_position_light, 10.0);
+	vec3 lightPos = vec3(u_v_position_light, 20.0);
+	vec3 light_intensity = vec3(70.0, 30.0, 30.0);
+	vec3 g_lightCol = u_v_color_light * light_intensity;
 	//
-	float g_scatteringCoefficient = 0.3 * 50.0;
+	float g_scatteringCoefficient = 0.3;
 	//
-	vec3 scatter = vec3(0.2, 0.5, 0.8) * InScatter(cameraPos, dir, lightPos, l) * g_scatteringCoefficient;
+	vec3 scatter = g_lightCol * vec3(0.2, 0.5, 0.8) * InScatter(cameraPos, dir, lightPos, l) * g_scatteringCoefficient;
 	//
 	// calculate contribution from diffuse reflection
 	float diffuse;
@@ -135,7 +137,7 @@ void main()
 
 	Li(surfacePos, surfaceNormal, lightPos, cameraPos, specularExponent, diffuse, specular);
 
-	vec3 r = LinearToSrgb((diffuse + specular * specularIntensity) + scatter);
+	vec3 r = LinearToSrgb(g_lightCol * (diffuse + specular * specularIntensity) + scatter);
 
 	result_color *= vec4(r, 1.0);
     #endif
