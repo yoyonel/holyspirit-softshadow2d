@@ -38,7 +38,7 @@ sf::Color ambient_light = sf::Color(ambient, ambient, ambient, 255);
 
 int main()
 {
-    // Creation de la fenÃÂªtre de rendu.
+    // Creation de la fenaªtre de rendu.
     sf::ContextSettings Settings;
 
     sf::RenderWindow App(sf::VideoMode(i_screen_width, i_screen_height, 32), "Holyspirit Light Test - Dynamic Light Shadow Volume 2D"); // Ecran 16/9, resolution HD 720p
@@ -103,7 +103,7 @@ int main()
         Manager->Add_Wall(sf::Vector2f(450, 250), sf::Vector2f(450, 350));
         //
 
-        // On ajoute des lignes ÃÂ  "Wall" pour representer les murs de facon graphique.
+        // On ajoute des lignes a  "Wall" pour representer les murs de facon graphique.
         Wall.push_back(sf::Shape::Line(450, 325, 300, 200, 5, sf::Color(255,255,255)));
         Wall.push_back(sf::Shape::Line(250, 240, 400, 365, 5, sf::Color(255,255,255)));
         Wall.push_back(sf::Shape::Line(125, 125, 100, 100, 5, sf::Color(255,255,255)));
@@ -131,7 +131,7 @@ int main()
             light=Manager->Add_Dynamic_Light();
             light2=Manager->Add_Dynamic_Light();
         #endif
-        // On ajoute une lumiere dynamique ÃÂ  la position (600,600), d'intensite 255, de rayon 160, de qualite 16 et de couleur verte.
+        // On ajoute une lumiere dynamique a  la position (600,600), d'intensite 255, de rayon 160, de qualite 16 et de couleur verte.
         light3=Manager->Add_Dynamic_Light(sf::Vector2f(600,200),255,SIZE_LIGHT_TYPE0,QUALITY_LIGHT,sf::Color(0,255,0));
     #endif
 
@@ -139,17 +139,17 @@ int main()
         #ifndef __USE_1_LIGHT__
             light=Manager->Add_Dynamic_Light_SV();
             light2=Manager->Add_Dynamic_Light_SV();
-            // On donne la position (375,275) ÃÂ  la lumiere raccordee ÃÂ  "light".
+            // On donne la position (375,275) a  la lumiere raccordee a  "light".
             Manager->SetPosition(light,sf::Vector2f(375,275));
-            // On donne une intensite de 255 ÃÂ  la lumiere raccordee ÃÂ  "light".
+            // On donne une intensite de 255 a  la lumiere raccordee a  "light".
             Manager->SetIntensity(light,255);
-            // On donne un rayon de 128 ÃÂ  la lumiere raccordee ÃÂ  "light".
+            // On donne un rayon de 128 a  la lumiere raccordee a  "light".
             Manager->SetRadius(light,SIZE_LIGHT_TYPE1);
-            // On donne une qualite de 16 ÃÂ  la lumiere raccordee ÃÂ  "light".
+            // On donne une qualite de 16 a  la lumiere raccordee a  "light".
             Manager->SetQuality(light,QUALITY_LIGHT);
-            // On donne une couleur rouge ÃÂ  la lumiere raccordee ÃÂ  "light".
+            // On donne une couleur rouge a  la lumiere raccordee a  "light".
             Manager->SetColor(light,sf::Color(255,0,0));
-            // MÃÂªme chose que juste au dessus, mais avec "light2"
+            // Maªme chose que juste au dessus, mais avec "light2"
             Manager->SetPosition(light2,sf::Vector2f(175,50));
             Manager->SetIntensity(light2,255);
             Manager->SetRadius(light2,SIZE_LIGHT_TYPE1);
@@ -159,7 +159,7 @@ int main()
             Manager->SetEffects_For_Light_SV(light);
             Manager->SetEffects_For_Light_SV(light2);
         #endif
-        // On ajoute une lumiere dynamique ÃÂ  la position (600,600), d'intensite 255, de rayon 160, de qualite 16 et de couleur verte.
+        // On ajoute une lumiere dynamique a  la position (600,600), d'intensite 255, de rayon 160, de qualite 16 et de couleur verte.
         light3=Manager->Add_Dynamic_Light_SV(sf::Vector2f(600,200), 255, SIZE_LIGHT_TYPE0, QUALITY_LIGHT, sf::Color(32,128,196));
 //        light3=Manager->Add_Dynamic_Light_SV( sf::Vector2f(600,200), 255, SIZE_LIGHT_TYPE0, QUALITY_LIGHT, sf::Color(255, 255, 255));
         //
@@ -168,8 +168,8 @@ int main()
 
     #ifndef __USE_LIGHT_SV__
         #ifndef __USE_1_LIGHT__
-            // On ajoute une lumiere statique ÃÂ  la position (110,490), d'intensite 160, de rayon 96, de qualite 8 et de couleur blanche.
-            // On ne la raccorde pas ÃÂ  une Light_Entity car c'est une lumiere statique et qui n'est donc pas modifiable.
+            // On ajoute une lumiere statique a  la position (110,490), d'intensite 160, de rayon 96, de qualite 8 et de couleur blanche.
+            // On ne la raccorde pas a  une Light_Entity car c'est une lumiere statique et qui n'est donc pas modifiable.
             Manager->Add_Static_Light(sf::Vector2f(110,490),160,96,8,sf::Color(255,255,255));
             //
             directional_light = Manager->Add_Dynamic_Directional_Light(sf::Vector2f(750,310),255,384,90,45,sf::Color(255,128,255));
@@ -214,7 +214,7 @@ int main()
             // Escape key : exit
             if ((Event.Type == sf::Event::KeyPressed) && (Event.Key.Code == sf::Key::Escape))
                 App.Close();
-            // FenÃÂªtre fermee : on quitte
+            // Fenaªtre fermee : on quitte
             if (Event.Type == sf::Event::Closed)
                 App.Close();
             // Resize event : adjust viewport
@@ -288,14 +288,14 @@ int main()
         const sf::Matrix3 mat_inv_view              =  mat_view.GetInverse();    // [-1, +1]x[-1, +1] -> [0, with_viewport]x[0, height_viewport]
         const sf::Matrix3 mat_window_to_viewport    =  mat_inv_view*mat_inv_window; // [0, with_window-1]x[0, height_window-1] -> [0, with_viewport]x[0, height_viewport]
         sf::Vector2f pos_mouse_in_viewport          = mat_window_to_viewport.Transform(pos_mouse_in_window);
-        // On place light 3 ÃÂ  cette position
+        // On place light 3 a  cette position
         Manager->SetPosition(light3, pos_mouse_in_viewport);
 
         Manager->SetOtherParameter(directional_light,ANGLE,angle);
 
         Clock.Reset();
 
-        //Vous pouvez changer le 0.025 (=25ms=40hz) par une autre valeur si vous voulez que les lumieres ne se rafraichissent que toutes les x secondes, au lieu de le faire ÃÂ  chaque tour de boucle.
+        //Vous pouvez changer le 0.025 (=25ms=40hz) par une autre valeur si vous voulez que les lumieres ne se rafraichissent que toutes les x secondes, au lieu de le faire a  chaque tour de boucle.
         if(LightRefresh>0.025)
         {
             // On re-calcule les lumieres
@@ -333,7 +333,7 @@ int main()
         }
         App.Draw(FPS);
 
-        // Affichage du contenu de la fenÃÂªtre ÃÂ  l'ecran
+        // Affichage du contenu de la fenaªtre a  l'ecran
         App.Display();
     }
 

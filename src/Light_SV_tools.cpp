@@ -45,7 +45,7 @@ Typ_Solutions_Quadratic_Equation Solve_Quadratic_Equation(float A, float B, floa
 
 Typ_Solutions_Quadratic_Equation Solve_Quadratic_Equation(vec2 _A, vec2 _AB, float _radius)
 {
-    // (1-b)  systeme quadratique pour trouver les intersections de la droite support du mur et le cercle ÃÂ  l'origine
+    // (1-b)  systeme quadratique pour trouver les intersections de la droite support du mur et le cercle a  l'origine
     float f_constant    = NORM2(_A) - _radius;
     float f_linear      = 2*DOT(_A, _AB);
     float f_quadratic   = NORM2(_AB);
@@ -55,7 +55,7 @@ Typ_Solutions_Quadratic_Equation Solve_Quadratic_Equation(vec2 _A, vec2 _AB, flo
 
 bool Quadratic_Equation_Has_Solutions(vec2 _A, vec2 _AB, float _radius)
 {
-    // (1-b)  systeme quadratique pour trouver les intersections de la droite support du mur et le cercle ÃÂ  l'origine
+    // (1-b)  systeme quadratique pour trouver les intersections de la droite support du mur et le cercle a  l'origine
     float f_constant    = NORM2(_A) - _radius;
     float f_linear      = 2.f*DOT(_A, _AB);
     float f_quadratic   = NORM2(_AB);
@@ -68,7 +68,7 @@ bool Quadratic_Equation_Has_Solutions(vec2 _A, vec2 _AB, float _radius)
     return (f_delta > 0.f);
 }
 
-// P1, P2 points sur un mÃÂªme cercle
+// P1, P2 points sur un maªme cercle
 // Line0: (P1, P2=P1 + normal(OP1))
 // Line1: (P3, P4=P3 + normal(OP2))
 // result: intersection point
@@ -120,7 +120,7 @@ bool Compute_Intersection_Segments( const vec2& P1, const vec2& P2, const vec2& 
     const vec2 P3_P4 = P4-P3;
     const vec2 P_P4  = P4-P;
     const vec2 P_P2  = P2-P;
-    // dans le meme sens, et de longueur (carree) inferieure ÃÂ  celui du segment
+    // dans le meme sens, et de longueur (carree) inferieure a  celui du segment
     b_segments_intersect =
         DOT(P1_P2, P_P2) >= 0.0 && NORM2(P_P2) <= NORM2(P1_P2) &&
         DOT(P3_P4, P_P4) >= 0.0 && NORM2(P_P4) <= NORM2(P3_P4);
@@ -285,7 +285,7 @@ bool Compute_Intersection_Segment_Circle(
     {
         float f_square_radius_light = r*r;
 
-        // (1-b)  systeme quadratique pour trouver les intersections de la droite support du mur et le cercle d'influence ÃÂ  l'origine
+        // (1-b)  systeme quadratique pour trouver les intersections de la droite support du mur et le cercle d'influence a  l'origine
         Typ_Solutions_Quadratic_Equation solutions = Solve_Quadratic_Equation(l1, l1_to_l2, f_square_radius_light);
 
         //
@@ -348,7 +348,7 @@ bool Compute_Intersection_Segment_Circle(
             else
             {
                 // sinon le segment/wall n'intersecte pas le cercle de lumiere (donc ne projette pas d'ombre)
-                // Ce cas correspond ÃÂ  la presence du segment dans un coin de la boundingbox du cercle (mais non inclut dans le cercle)
+                // Ce cas correspond a  la presence du segment dans un coin de la boundingbox du cercle (mais non inclut dans le cercle)
                 b_wall_intersect_circle = false;
             }
         }

@@ -18,7 +18,7 @@ class Light_SV : public Light
 
         void Generate(std::vector <Wall> &m_wall);
 
-        // Ajouter un triangle ÃÂ  la lumiere, en effet, les lumieres sont composee de triangles
+        // Ajouter un triangle a  la lumiere, en effet, les lumieres sont composee de triangles
         void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2);
 
         inline float    GetInnerRadius() const          { return m_inner_radius; };
@@ -59,7 +59,7 @@ class Light_SV : public Light
         sf::Shader SoftShadowInnerEffect;
         sf::Shader SoftShadowOuterEffect;
         sf::Shader SphereLighting2D;
-        sf::Shader CombineEffect;
+        //sf::Shader CombineEffect;
         sf::Shader CombineEffect2;
         sf::Shader SoftShadowEffect;
         sf::Shader SoftShadowEffect_GroundTruth;

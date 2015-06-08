@@ -463,7 +463,7 @@ vec2 compute_projection_on_circle( const vec2& E, const vec2& P, const float r, 
     vec2 pos_light= vec2(0.f, 0.f);
 
     f_signed_distance = signed_distance_point_line( pos_light, P, E );
-    // [TODO]: ÃÂ  simplifier !
+    // [TODO]: a  simplifier !
     d = f_signed_distance*inv_r;
     a = acos(d);
     y = NORMALIZE(E-P);

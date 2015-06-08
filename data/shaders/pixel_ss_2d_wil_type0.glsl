@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------------------
 // file: pixel_ss_2d_wil_type0
 // --------------------------------------------------------------------------------
-// action:  calcul d'occlusion d'un mur par rappport ÃÂ  une source de lumiere disque
+// action:  calcul d'occlusion d'un mur par rappport a  une source de lumiere disque
 //          _wil:   Wall In Light
-//          =>      Le segment mur est ÃÂ  l'interieur de la source de lumiere.
+//          =>      Le segment mur est a  l'interieur de la source de lumiere.
 //          _type0:
 //              E0: OUTSIDE_CIRCLE
 //              I0: ON_CIRCLE
@@ -69,7 +69,7 @@ void main()
     vec2    v_pos_light_in_ls   = vec2(0.); // origine du repere
 
     // Tests pour rejeter rapidement (le plus possible)
-    // les points non inclus dans la zone d'influence de penombre de l'arÃÂªte par rapport au cercle de lumiere
+    // les points non inclus dans la zone d'influence de penombre de l'araªte par rapport au cercle de lumiere
     tests_for_discard_texel( v_pos_in_ls );
 
     // shadow coefficient
@@ -193,7 +193,7 @@ float compute_visibility_light(in vec2 P, in vec2 E0, in vec2 E1, in float r)
 
     visibilty = (A0 + A1);
 
-    // Test l'alignement entre les sommets definissant l'arÃÂªte et le point receiver
+    // Test l'alignement entre les sommets definissant l'araªte et le point receiver
     visibilty = EQUAL_EPS((dot(normalize(P_E0), normalize(P_E1))), 1., 0.001*EPSILON) ? 1. : visibilty;
 
     return visibilty;
@@ -208,7 +208,7 @@ vec2 compute_projection_on_circle( in vec2 E, in vec2 P, in float r, in float in
     vec2 pos_light= vec2(0.);
 
     f_signed_distance = signed_distance_point_line( pos_light, P, E );
-    // [TODO]: ÃÂ  simplifier !
+    // [TODO]: a  simplifier !
     d = f_signed_distance*inv_r;
     a = acos(d);
     y = normalize(E-P);

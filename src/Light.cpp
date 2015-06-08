@@ -145,7 +145,7 @@ void Light::AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std:
                                              (int)(m_intensity*m_color.g/255),
                                              (int)(m_intensity*m_color.b/255)),sf::Color(255,255,255));
 
-    // On calcul ou l'on se trouve par rapport au centre, pour savoir ÃÂ  quel intensite on est
+    // On calcul ou l'on se trouve par rapport au centre, pour savoir a  quel intensite on est
     intensity=m_intensity-sqrt(pt1.x*pt1.x + pt1.y*pt1.y)*m_intensity/m_influence_radius;
     // Et on ajoute un  point au shape
     m_shape.back().AddPoint(pt1.x, pt1.y,  sf::Color((int)(intensity*m_color.r/255),

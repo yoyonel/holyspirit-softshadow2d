@@ -36,8 +36,9 @@ add_executable(
 
 # Detect and add SFML
 # local [MOG]
-#set(SFMLDIR "/home/latty/__DEV__/__LOISIRS__/install/sfml2_custom")
-set(SFMLDIR "/home/atty/Prog/install/sflm2-modify-with_fbo_stencil")
+set(SFMLDIR "/home/latty/__DEV__/__LOISIRS__/install/sfml2_custom")
+#set(SFMLDIR "/home/atty/Prog/install/sflm2-modify-with_fbo_stencil")
+#set(SFMLDIR "../install/sfml2_custom")
 MESSAGE([LOCAL] - SFMLDIR: ${SFMLDIR})
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
@@ -48,6 +49,8 @@ find_package(SFML 2 REQUIRED system window graphics network audio)
 if(SFML_FOUND)
   include_directories(${SFML_INCLUDE_DIR})
   target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES})
+
+  MESSAGE(SFML_INCLUDE_DIR: ${SFML_INCLUDE_DIR})
 endif()
 
 # OpenGL

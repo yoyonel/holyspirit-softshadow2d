@@ -74,7 +74,7 @@ float compute_penumbra_wd(in vec2 v_pos, in vec2 v_edge)
     // -    Methode par calcul du ratio de la distance entre le point courant et
     //      sa projection orthogonale sur l'axe reliant le vertex edge et le centre de la source de lumiere (droite support du Shadow-Volume)
 
-    // distance du texel courant par rapport ÃÂ 
+    // distance du texel courant par rapport a 
     // l'axe reliant le centre de la source de lumiere et le vertex de l'edge
     float   f_dist_P    = distance_point_line(v_edge, vec2(0), v_pos);
     // Utilisation d'un theoreme de Thales pour calculer des rapports de distance
@@ -88,20 +88,20 @@ float compute_penumbra_wd(in vec2 v_pos, in vec2 v_edge)
 ///
 /// \param v_pos position du texel en light space
 /// \param v_edge position du sommet de l'edge en light space
-/// \param v_normal normale de la ligne liant v_edge au centre de la source de lumiere (elle peut ne pas ÃÂªtre unitaire ou orientee, on ne desire que sa direction)
+/// \param v_normal normale de la ligne liant v_edge au centre de la source de lumiere (elle peut ne pas aªtre unitaire ou orientee, on ne desire que sa direction)
 ///
 /// \return coefficient de penombre compris dans [0, 1]
 ///
 ////////////////////////////////////////////////////////////
 float compute_penumbra_rp(in vec2 v_pos, in vec2 v_edge, in vec2 v_normal)
 {
-    // -    Methode2-a par retro-projection d'un sommet de l'edge sur la source de lumiere ("reconstruction" du recouvrement de l'arÃÂªte sur la source de lumiere)
+    // -    Methode2-a par retro-projection d'un sommet de l'edge sur la source de lumiere ("reconstruction" du recouvrement de l'araªte sur la source de lumiere)
     //      hypothese: les volumes de penombres des sommets consecutifs ne se recouvrent pas.
     // - intersection des lignes: (v_pos, v_edge) (centre de la lumiere, un des 2 centres de projection pour la lumiere etendue)
     //      L'intersection peut etre considerer comme la projection du sommet edge sur la source de lumiere.
-    //      La distance de cette intersection nous fournit un coefficient de recouvrement/d'occlusion de la projection de l'arÃÂªte sur la source de lumiere.
+    //      La distance de cette intersection nous fournit un coefficient de recouvrement/d'occlusion de la projection de l'araªte sur la source de lumiere.
     vec2 intersection_lines = compute_intersection_lines( v_pos, v_edge, vec2(0), v_normal);
-    // rapport de distance qui nous fournit le coefficient de penombre (ou recouvrement de la source de lumiere par l'arÃÂªte)
+    // rapport de distance qui nous fournit le coefficient de penombre (ou recouvrement de la source de lumiere par l'araªte)
     return (length(intersection_lines)/u_f_radius_light);
 }
 
@@ -110,7 +110,7 @@ float compute_penumbra_rp(in vec2 v_pos, in vec2 v_edge, in vec2 v_normal)
 ///
 /// \param v_pos position du texel en light space
 /// \param v_edges positions des sommets de l'edge en light space
-/// \param v_normal normale de la ligne liant v_edge au centre de la source de lumiere (elle peut ne pas ÃÂªtre unitaire ou orientee, on ne desire que sa direction)
+/// \param v_normal normale de la ligne liant v_edge au centre de la source de lumiere (elle peut ne pas aªtre unitaire ou orientee, on ne desire que sa direction)
 ///
 /// \return coefficient de penombre compris dans [0, 1]
 ///
@@ -121,7 +121,7 @@ float compute_penumbra_rp(in vec2 v_pos, in vec2 v_edges[2], in vec2 v_normal)
 
     // - intersection des lignes: (v_pos, v_edge) (centre de la lumiere, un des 2 centres de projection pour la lumiere etendue)
     //      L'intersection peut etre considerer comme la projection du sommet edge sur la source de lumiere.
-    //      La distance de cette intersection nous fournit un coefficient de recouvrement/d'occlusion de la projection de l'arÃÂªte sur la source de lumiere.
+    //      La distance de cette intersection nous fournit un coefficient de recouvrement/d'occlusion de la projection de l'araªte sur la source de lumiere.
     vec2    intersections_lines[2];
     float   lengths[2];
 
@@ -133,7 +133,7 @@ float compute_penumbra_rp(in vec2 v_pos, in vec2 v_edges[2], in vec2 v_normal)
 
     float f_coef_covering = u_f_radius_light - (min(lengths[1], u_f_radius_light) - lengths[0]);
 
-    // rapport de distance qui nous fournit le coefficient de penombre (ou recouvrement de la source de lumiere par l'arÃÂªte)
+    // rapport de distance qui nous fournit le coefficient de penombre (ou recouvrement de la source de lumiere par l'araªte)
     return f_coef_covering/u_f_radius_light;
 }
 

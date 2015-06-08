@@ -50,7 +50,7 @@ void Light_Wall::Compute()
     {
         // On a les deux vertex issus du clipping du segment par le cercle d'influence de la lumieres
         vec2 intersections_segment_inner_circle[2];
-        // Est ce que le segment est ÃÂ  l'interieur du cercle de lumiere ?
+        // Est ce que le segment est a  l'interieur du cercle de lumiere ?
         bool b_segment_intersect_inner_light = Compute_Intersection_Segment_Circle(pos, inner_radius, vertex_wall[0], vertex_wall[1], intersections_segment_inner_circle);
         if (b_segment_intersect_inner_light)
         {
@@ -66,8 +66,8 @@ void Light_Wall::Compute()
             // On determine la position relative des vertex par rapport au cercle (out, on or in)
             Compute_Types_Vertex( list_vertex, type_intersections_circle );
 
-            // On construit la shape englobante pour l'influence de ce segment par rapport ÃÂ  la lumiere
-            // en l'occurence si la segment est ÃÂ  l'interieur de la lumiere, il influence toute la projection de la lumiere
+            // On construit la shape englobante pour l'influence de ce segment par rapport a  la lumiere
+            // en l'occurence si la segment est a  l'interieur de la lumiere, il influence toute la projection de la lumiere
             sf::Shape shape_bb_light;
             shape_bb_light.AddPoint(vec2(-influence_radius, -influence_radius), WHITE, WHITE);
             shape_bb_light.AddPoint(vec2(+influence_radius, -influence_radius), WHITE, WHITE);
@@ -113,7 +113,7 @@ std::vector<Bounding_Volume> Light_Wall::Construct_Penumbras_Bounding_Volumes(co
     vec2 bounding_vertex_penumbra[2][2];
 
     // - vecteur Z oriente par rapport au sens de [E0_LS,E1_LS]
-    // - ce vecteur sert pour la suite ÃÂ  orienter les volumes inner/outer de penombre
+    // - ce vecteur sert pour la suite a  orienter les volumes inner/outer de penombre
     sf::Vector3f z = PROD_VEC(TO_VEC3(intersections_segment_circle[0]), TO_VEC3(E0_LS_to_E1_LS));
     z.z = z.z<0?-1:1;
 
@@ -148,14 +148,14 @@ std::vector<Bounding_Volume> Light_Wall::Construct_Penumbras_Bounding_Volumes(co
         {
             // (1-a) Calcul les centres de projections pour les zones de penombre
             {
-                // on determine l'orientation du segment pour ÃÂªtre sure de caracteriser les zones: outer et inner distinctement
+                // on determine l'orientation du segment pour aªtre sure de caracteriser les zones: outer et inner distinctement
                 float f_sign_orientation    = j ? -1.f : +1.f;
                 vec2 oriented_normal        = f_sign_orientation*intersections_normals[i];
                 float orientation           = DOT(oriented_normal, intersections_circles[j]);
                 penumbra_proj_centers[i][j] = orientation >= 0 ? intersections_circles[j]:intersections_circles[1-j];
             }
             // (1-b) vecteur directeur reliant
-            //          un des sommets clippes (par le cercle d'influence) de l'arÃÂªte
+            //          un des sommets clippes (par le cercle d'influence) de l'araªte
             //          un des centres de projection (caracterisant les volumes de penombres)
             isc_ppc[i][j]           = (intersections_segment_circle[i] - penumbra_proj_centers[i][j]);
             // (1-c) Normal du segment oriente isc_ppc
@@ -166,14 +166,14 @@ std::vector<Bounding_Volume> Light_Wall::Construct_Penumbras_Bounding_Volumes(co
             //      et le cercle d'influence de la lumiere
             float f_square_influence_radius_light   = influence_radius*influence_radius;
             solutions[i][j]                         = Solve_Quadratic_Equation(penumbra_proj_centers[i][j], isc_ppc[i][j], f_square_influence_radius_light);
-            // On recupere la solution max (qui correspond ÃÂ  projection orientee qui nous interesse)
+            // On recupere la solution max (qui correspond a  projection orientee qui nous interesse)
             // et on l'utilise pour retrouver le point d'intersection
             proj_intersections_penumbra[i][j]   = penumbra_proj_centers[i][j] + isc_ppc[i][j]*(float)(MAX(solutions[i][j].f_u0, solutions[i][j].f_u1));
 
             // (3) Calcul d'un des sommet englobant les volumes de penombres (outer/inner)
-            //      Ce sommet correspond ÃÂ  l'intersection des lignes
+            //      Ce sommet correspond a  l'intersection des lignes
             //          possedant le sommet (2) et de normale (1-c)
-            //          possedant la projection d'un sommet de l'arÃÂªte et la normale qui est tangente au cercle en ce point
+            //          possedant la projection d'un sommet de l'araªte et la normale qui est tangente au cercle en ce point
             bounding_vertex_penumbra[i][j]      = Compute_Intersection_Lines(
                                                     proj_intersections_penumbra[i][j],  proj_intersections_penumbra[i][j]+isc_ppc_normal[i][j],
                                                     proj_intersections[i],              proj_intersections[i]+intersections_normals[i]

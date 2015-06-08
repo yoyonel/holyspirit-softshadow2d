@@ -28,7 +28,7 @@ class Light_Manager : public CSingleton<Light_Manager>
     friend void CSingleton<Light_Manager>::Kill();
 
 
-    //Differents moyen d'ajouter une lumiere dynamique, soit on l'ajoute sans aucune valeur par defaut, soit on lui donne une lumiere par defaut, soit on lui donne ses valeurs "ÃÂ  la main"
+    //Differents moyen d'ajouter une lumiere dynamique, soit on l'ajoute sans aucune valeur par defaut, soit on lui donne une lumiere par defaut, soit on lui donne ses valeurs "a  la main"
     Light_Entity Add_Dynamic_Light();
     Light_Entity Add_Dynamic_Light(Light);
     Light_Entity Add_Dynamic_Light(sf::Vector2f position, float intensity, float radius, int quality, sf::Color color);
@@ -61,10 +61,10 @@ class Light_Manager : public CSingleton<Light_Manager>
     void Generate();
     void Generate(Light_Entity);
 
-    // Afficher toutes les lumieres ÃÂ  l'ecran
+    // Afficher toutes les lumieres a  l'ecran
     void Draw(sf::RenderWindow *App);
 
-    // Differentes methodes pour modifier les attributs d'une lumiere, ou les recuperer. Il faut ÃÂ  chaque fois envoyer une Light_Entity en parametre pour
+    // Differentes methodes pour modifier les attributs d'une lumiere, ou les recuperer. Il faut a  chaque fois envoyer une Light_Entity en parametre pour
     // savoir de quelle lumiere on parle/
 
     void SetPosition(Light_Entity, sf::Vector2f );

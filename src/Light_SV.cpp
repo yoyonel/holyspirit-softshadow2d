@@ -68,8 +68,8 @@ void Light_SV::clear()
 void Light_SV::InitEffects()
 {
     // Chargement des shaders
-    std::cout << "Load Shader: data/shaders/light_2d_ssv.glsl, data/shaders/combine.glsl" << std::endl;
-    CombineEffect.LoadFromFile("data/shaders/light_2d_ssv.glsl", "data/shaders/combine.glsl");
+    //std::cout << "Load Shader: data/shaders/light_2d_ssv.glsl, data/shaders/combine.glsl" << std::endl;
+    //CombineEffect.LoadFromFile("data/shaders/light_2d_ssv.glsl", "data/shaders/combine.glsl");
 
     std::cout << "Load Shader: data/shaders/light_2d_ssv.glsl, data/shaders/combine_2.glsl" << std::endl;
     CombineEffect2.LoadFromFile("data/shaders/light_2d_ssv.glsl", "data/shaders/combine_2.glsl");
@@ -93,7 +93,7 @@ void Light_SV::InitEffects()
         SphereLighting2D.IsAvailable() &&
         SoftShadowInnerEffect.IsAvailable() &&
         SoftShadowOuterEffect.IsAvailable() &&
-        CombineEffect.IsAvailable() &&
+        //CombineEffect.IsAvailable() &&
         CombineEffect2.IsAvailable() &&
         SoftShadowEffect.IsAvailable() &&
         SoftShadowEffect_GroundTruth.IsAvailable() &&
@@ -173,7 +173,7 @@ void Light_SV::Draw_Full_Light(sf::RenderTarget *App)
                         case OUTER_PENUMBRA:
                         case INNER_PENUMBRA:
                         {
-                            // On utilise le stencil pour ne pas ecrire calculer l'ombre deux fois au mÃÂªme endroit
+                            // On utilise le stencil pour ne pas ecrire calculer l'ombre deux fois au maªme endroit
                             glStencilFunc( GL_EQUAL, ref_stencil, mask_stencil);
                             glStencilOp( GL_INCR, GL_INCR, GL_INCR);
                             glStencilMask( mask_stencil);
@@ -248,8 +248,8 @@ void Light_SV::Draw_Full_Light(sf::RenderTarget *App)
 
         App->Draw(sprite, CombineEffect2);
 
-        // MOG: bug avec SFML, probleme avec la surface de rendu App si je ne remet pas son shader ÃÂ  NULL
-        // Cette remise ÃÂ  NULL est effectuee si on active le debug
+        // MOG: bug avec SFML, probleme avec la surface de rendu App si je ne remet pas son shader a  NULL
+        // Cette remise a  NULL est effectuee si on active le debug
         // ou juste en dessinant une shape vide
         // ... bizarre quand meme :/
         Draw_Debug(App);

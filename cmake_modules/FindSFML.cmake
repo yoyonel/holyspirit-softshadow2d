@@ -21,20 +21,26 @@ endif()
 
 # find the SFML include directory
 find_path(SFML_INCLUDE_DIR SFML/Config.hpp
-          PATH_SUFFIXES include
-          PATHS
-          ~/Library/Frameworks
-          /Library/Frameworks
-          /usr/local/
-          /usr/
-          /sw          # Fink
-          /opt/local/  # DarwinPorts
-          /opt/csw/    # Blastwave
-          /opt/
-          ${SFMLDIR})
-
-#MESSAGE(SFMLDIR: ${SFMLDIR})
-#MESSAGE(SFML_INCLUDE_DIR: ${SFML_INCLUDE_DIR})
+  PATH_SUFFIXES include
+  PATHS ${SFMLDIR}
+  #~/Library/Frameworks
+  #/Library/Frameworks
+  #/usr/local/
+  #/usr/
+  #/sw          # Fink
+  #/opt/local/  # DarwinPorts
+  #/opt/csw/    # Blastwave
+  #/opt/
+  NO_DEFAULT_PATH
+  NO_CMAKE_ENVIRONMENT_PATH
+  NO_CMAKE_PATH
+  NO_SYSTEM_ENVIRONMENT_PATH
+  NO_CMAKE_SYSTEM_PATH
+  NO_CMAKE_FIND_ROOT_PATH
+)
+  
+MESSAGE(SFMLDIR: ${SFMLDIR})
+MESSAGE(SFML_INCLUDE_DIR: ${SFML_INCLUDE_DIR})
 
 # check the version number
 set(SFML_VERSION_OK TRUE)
@@ -63,15 +69,23 @@ if(SFML_FIND_VERSION AND SFML_INCLUDE_DIR)
 endif()
 
 # find the requested components
-set(FIND_SFML_LIB_PATHS ~/Library/Frameworks
-                        /Library/Frameworks
-                        /usr/local
-                        /usr
-                        /sw
-                        /opt/local
-                        /opt/csw
-                        /opt
-                        ${SFMLDIR})
+set(FIND_SFML_LIB_PATHS
+	${SFMLDIR}
+	#~/Library/Frameworks
+	#/Library/Frameworks
+	#/usr/local
+	#/usr
+	#/sw
+	#/opt/local
+	#/opt/csw
+	#/opt
+  NO_DEFAULT_PATH
+  NO_CMAKE_ENVIRONMENT_PATH
+  NO_CMAKE_PATH
+  NO_SYSTEM_ENVIRONMENT_PATH
+  NO_CMAKE_SYSTEM_PATH
+  NO_CMAKE_FIND_ROOT_PATH
+  )
 foreach(FIND_SFML_COMPONENT ${SFML_FIND_COMPONENTS})
     string(TOLOWER ${FIND_SFML_COMPONENT} FIND_SFML_COMPONENT_LOWER)
     string(TOUPPER ${FIND_SFML_COMPONENT} FIND_SFML_COMPONENT_UPPER)

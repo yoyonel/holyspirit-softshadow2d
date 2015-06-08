@@ -4,7 +4,7 @@
 // action:
 // --------------------------------------------------------------------------------
 
-// wil: wall in light, le segment-mur est ÃÂ  l'interieur de la source de lumiere
+// wil: wall in light, le segment-mur est a  l'interieur de la source de lumiere
 #define NORMAL(V2)                  vec2(-(V2).y, (V2).x)
 #define EQUAL0_EPS(_f, _eps)        ((_f)>=-(_eps) && (_f)<=+(_eps))
 #define EQUAL_EPS(_f1, _f2, _eps)   (((_f1)-(_f2))>=-(_eps) && ((_f1)-(_f2))<=+(_eps))
@@ -61,7 +61,7 @@ void main()
     vec2    P  = u_v_receiver;
 
     // Tests pour rejeter rapidement (le plus possible)
-    // les points non inclus dans la zone d'influence de penombre de l'arÃÂªte par rapport au cercle de lumiere
+    // les points non inclus dans la zone d'influence de penombre de l'araªte par rapport au cercle de lumiere
     tests_for_discard_texel( v_pos_in_ls );
 
     vec4 color = vec4(0);
@@ -108,7 +108,7 @@ vec2 compute_projection_on_circle( in vec2 E, in vec2 P, in float r, in float in
     vec2 pos_light = vec2(0., 0.);
 
     f_signed_distance = signed_distance_point_line( pos_light, P, E );
-    // [TODO]: ÃÂ  simplifier !
+    // [TODO]: a  simplifier !
     d = clamp(f_signed_distance*inv_r, -1, +1);
     a = acos(d);
     y = NORMALIZE(E-P);
@@ -181,7 +181,7 @@ vec4 render_disc_portion_i0_proj_i0(in vec2 I0, in vec2 I1, in vec2 E0, in vec2 
     vec2 n_I0_Proj_I0 = NORMAL(Proj_I0 - I0);
     vec2 n_E0_Proj_E0 = NORMAL(Proj_E0 - E0);
 
-    // Est ce que l'arÃÂªte E0 I0 occlude la light par rapport au texel receiver ?
+    // Est ce que l'araªte E0 I0 occlude la light par rapport au texel receiver ?
     b_inside_half_plan[0] = dot(I0 - receiver_in_ls, I0) < 0;
 
     n_I0_Proj_I0 = dot(n_I0_Proj_I0, I1 - I0) < 0 ? n_I0_Proj_I0 : -n_I0_Proj_I0;
@@ -223,7 +223,7 @@ vec4 render_disc_portion_i1_proj_i1(in vec2 I0, in vec2 I1, in vec2 E1, in vec2 
     vec2 n_I1_Proj_I1 = NORMAL(Proj_I1 - I1);
     vec2 n_E1_Proj_E1 = NORMAL(Proj_E1 - E1);
 
-    // Est ce que l'arÃÂªte E0 I0 occlude la light par rapport au texel receiver ?
+    // Est ce que l'araªte E0 I0 occlude la light par rapport au texel receiver ?
     b_inside_half_plan[0] = dot(I1 - receiver_in_ls, I1) < 0;
 
     n_I1_Proj_I1 = dot(n_I1_Proj_I1, I1 - I0) < 0 ? n_I1_Proj_I1 : -n_I1_Proj_I1;

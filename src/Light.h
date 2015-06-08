@@ -74,7 +74,7 @@ class Light
     // Calculer la lumiere
     virtual void Generate(std::vector <Wall> &m_wall);
 
-    // Ajouter un triangle ÃÂ  la lumiere, en effet, les lumieres sont composee de triangles
+    // Ajouter un triangle a  la lumiere, en effet, les lumieres sont composee de triangles
     virtual void AddTriangle(sf::Vector2f pt1,sf::Vector2f pt2, int minimum_wall,std::vector <Wall> &m_wall);
 
     // Changer differents attributs de la lumiere
@@ -98,7 +98,7 @@ class Light
     bool m_actif;
 
     protected :
-    //Position ÃÂ  l'ecran
+    //Position a  l'ecran
     sf::Vector2f m_position;
     //Intensite, gere la transparence ( entre 0 et 255 )
     float m_intensity;
@@ -113,7 +113,7 @@ class Light
 
     private :
 
-    //Qualite de la lumiere, c'est ÃÂ  dire le nombre de triangles par defaut qui la compose.
+    //Qualite de la lumiere, c'est a  dire le nombre de triangles par defaut qui la compose.
     int m_quality;
 };
 
