@@ -113,13 +113,14 @@ void main()
     #endif
 
     #ifdef USE_SCATTEROING
-	vec3 cameraPos = vec3(640, 360, 50.0);
+	vec3 cameraPos = vec3(640, 360, z_light);
+	vec3 lightPos = vec3(u_v_position_light, z_light*0.5);
 	vec3 surfacePos = vec3(v_v_position, 0.0);
+
 	vec3 dir = surfacePos - cameraPos;
 	float l = length(dir);
 	dir /= l;
-	vec3 lightPos = vec3(u_v_position_light, 20.0);
-	vec3 light_intensity = vec3(70.0, 30.0, 30.0);
+	vec3 light_intensity = vec3(7.0, 3.0, 3.0) * 1.0;
 	vec3 g_lightCol = u_v_color_light * light_intensity;
 	//
 	float g_scatteringCoefficient = 0.3;
@@ -139,7 +140,7 @@ void main()
 
 	vec3 r = LinearToSrgb(g_lightCol * (diffuse + specular * specularIntensity) + scatter);
 
-	result_color *= vec4(r, 1.0);
+	result_color += vec4(r, 1.0) * (shadow*att);
     #endif
 
     gl_FragColor = result_color;

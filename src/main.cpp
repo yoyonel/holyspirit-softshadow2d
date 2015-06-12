@@ -14,7 +14,7 @@
 //
 #define     QUALITY_LIGHT       32
 //
-#define     SIZE_LIGHT_TYPE0    (256+128)
+#define     SIZE_LIGHT_TYPE0    (256+128)*2
 #define     SIZE_LIGHT_TYPE1    (128*2)
 //
 #define     __USE_BACKGROUND__
