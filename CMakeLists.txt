@@ -66,7 +66,8 @@ endif()
 find_package(GLEW REQUIRED)
 include_directories(${GLEW_INCLUDE_DIRSq})
 if (GLEW_FOUND)
-  target_link_libraries(${EXECUTABLE_NAME} ${GLEW_LIBRARIES})
+  message(GLEW_LIBRARY : ${GLEW_LIBRARY})
+  target_link_libraries(${EXECUTABLE_NAME} ${GLEW_LIBRARY})
 endif()
 
 # Install target
