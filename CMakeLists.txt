@@ -36,7 +36,7 @@ add_executable(
 
 # Detect and add SFML
 # local [MOG]
-set(SFMLDIR "/home/latty/__DEV__/__LOISIRS__/install/sfml2_custom")
+#set(SFMLDIR "/home/latty/__DEV__/__LOISIRS__/install/sfml2_custom")
 #set(SFMLDIR "/home/atty/Prog/install/sflm2-modify-with_fbo_stencil")
 #set(SFMLDIR "../install/sfml2_custom")
 MESSAGE([LOCAL] - SFMLDIR: ${SFMLDIR})
